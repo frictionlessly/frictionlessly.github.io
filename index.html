@@ -3,174 +3,351 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f6f7f9">
-  <title>Frictionless.fyi — Less friction. More customers.</title>
-  <meta name="description" content="Know what's slowing your website down and what to fix first. Frictionless.fyi combines website audits, practical fixes, and meaningful measurement for service businesses.">
-  <link rel="canonical" href="https://frictionless.fyi/">
+  <meta name="theme-color" content="#f7f7ef">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%2319372d'/%3E%3Cpath d='M10 30V10h22M10 20h15m-1 6 6-6-6-6' fill='none' stroke='%23ddf796' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <title>Frictionless — Make it easy to choose you.</title>
+  <meta name="description" content="Hosting, ongoing small speed and conversion improvements, and a plain-English monthly report. $10/month USD for supported small service-business websites. Start with a free review.">
+  <link rel="canonical" href="https://frictionlessly.github.io/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Frictionless.fyi — Less friction. More customers.">
-  <meta property="og:description" content="Know the friction. Fix what matters. Website audits, practical improvements, and meaningful measurement for service businesses.">
-  <meta property="og:url" content="https://frictionless.fyi/">
+  <meta property="og:title" content="Frictionless — Make it easy to choose you.">
+  <meta property="og:description" content="Less waiting. Less drop-off. A clearer path to getting in touch. Hosting, small improvements, and a monthly report for $10/month USD on supported small sites.">
+  <meta property="og:url" content="https://frictionlessly.github.io/">
   <meta name="twitter:card" content="summary">
   <style>
-    :root { color-scheme: light; --ink: #17212e; --muted: #546171; --blue: #174de2; --paper: #f6f7f9; --line: #dce1e8; --dark: #111c2b; }
+    :root {
+      color-scheme: light;
+      --paper: #f7f7ef;
+      --white: #fffef9;
+      --ink: #19372d;
+      --muted: #536258;
+      --line: #d5dbce;
+      --green: #214d39;
+      --deep: #163a2c;
+      --lime: #ddf796;
+      --pale: #e7eddb;
+      --mono: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    }
     *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
-    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; }
-    a { color: var(--blue); text-underline-offset: .2em; }
+    html { scroll-behavior: smooth; scroll-padding-top: 2rem; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 1rem; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, p, figure { margin: 0; }
+    h1, h2, h3 { line-height: 1.08; font-weight: 600; }
+    h1, h2 { text-wrap: balance; }
+    p { text-wrap: pretty; }
+    a { color: inherit; text-underline-offset: .22em; text-decoration-thickness: 1px; }
+    a:hover { text-decoration-thickness: 2px; }
     button, input { font: inherit; }
-    a, button, input, summary { -webkit-tap-highlight-color: transparent; }
-    :focus-visible { outline: 3px solid #a34a00; outline-offset: 5px; }
-    .wrap { width: min(1160px, calc(100% - 3rem)); margin-inline: auto; }
-    .skip { position: absolute; top: -6rem; left: 1rem; z-index: 10; background: white; padding: .8rem; }
+    button, a, input, summary { -webkit-tap-highlight-color: transparent; }
+    button, summary { cursor: pointer; }
+    svg { display: block; flex-shrink: 0; }
+    :focus-visible { outline: 3px solid #b05022; outline-offset: 5px; }
+    .dark :focus-visible { outline-color: var(--lime); }
+    .wrap { width: min(1200px, calc(100% - 6rem)); margin-inline: auto; }
+    .section { padding-block: 6.5rem; }
+    .eyebrow { display: flex; align-items: center; gap: .7rem; font: 600 .7rem/1.5 var(--mono); letter-spacing: .09em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: .45rem; height: .45rem; background: currentColor; border-radius: 50%; flex-shrink: 0; }
+    .muted { color: var(--muted); }
+    .serif { font-family: Georgia, "Times New Roman", serif; font-weight: 400; font-style: italic; letter-spacing: -.055em; }
+    .button { min-height: 52px; display: inline-flex; align-items: center; justify-content: space-between; gap: 2rem; padding: .85rem 1.2rem; border: 1px solid var(--ink); border-radius: 4px; background: var(--ink); color: var(--white); font-size: .9rem; font-weight: 650; line-height: 1.4; text-decoration: none; transition: background .18s, box-shadow .18s; }
+    .button:hover { background: #2c5440; box-shadow: 0 3px 0 #19372d20; }
+    .button svg { width: 20px; height: 20px; }
+    .button.lime { color: var(--ink); border-color: var(--lime); background: var(--lime); }
+    .button.lime:hover { background: #edffc2; border-color: #edffc2; }
+    .button.outline { background: transparent; color: var(--ink); border-color: #8a9988; }
+    .button.outline:hover { background: var(--pale); }
+    .skip { position: absolute; top: -6rem; left: 1rem; z-index: 20; padding: .8rem 1rem; background: var(--white); color: var(--ink); }
     .skip:focus { top: 1rem; }
-    header { position: sticky; top: 0; z-index: 5; background: #f6f7f9; border-bottom: 1px solid var(--line); }
-    .nav { min-height: 80px; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
-    .wordmark { color: var(--ink); font-size: 1.55rem; letter-spacing: -.065em; font-weight: 800; text-decoration: none; display: inline-flex; align-items: center; gap: .6rem; }
-    .mark { width: 24px; height: 24px; color: var(--blue); }
-    .nav-links { display: flex; gap: 1.8rem; align-items: center; }
-    .nav-links > a:not(.button) { color: var(--muted); font-size: .85rem; text-decoration: none; font-weight: 600; }
-    .nav-links a:hover { color: var(--blue); }
-    .button { display: inline-flex; align-items: center; justify-content: center; gap: .8rem; min-height: 48px; padding: .8rem 1.25rem; border: 1px solid var(--blue); border-radius: 5px; color: white; background: var(--blue); text-decoration: none; font-weight: 650; font-size: .9rem; cursor: pointer; transition: background .15s, transform .15s; }
-    .button:hover { background: #103cba; color: white; transform: translateY(-1px); }
-    .button.secondary { border-color: var(--line); background: transparent; color: var(--ink); }
-    .button.secondary:hover { background: #e9edf3; }
-    .nav .button { min-height: 42px; padding: .6rem 1rem; font-size: .8rem; }
-    .eyebrow { display: block; margin: 0 0 1.5rem; color: var(--blue); font: 650 .69rem/1.6 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .12em; text-transform: uppercase; }
-    .hero { padding: 6.5rem 0 4.5rem; }
-    .hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; gap: 4.5rem; }
-    h1, h2, h3, p { margin-top: 0; }
-    h1 { font-size: clamp(3.2rem, 5.5vw, 5rem); letter-spacing: -.065em; line-height: 1.04; font-weight: 750; margin-bottom: 1.75rem; }
-    h1 span { color: var(--blue); }
-    .hero-copy { font-size: 1.06rem; max-width: 32rem; color: var(--muted); }
-    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem; margin: 2rem 0 1rem; }
-    .fine { font-size: .77rem; color: var(--muted); }
-    .diagnostic { background: var(--dark); color: #eff3fa; border-radius: 10px; box-shadow: 0 20px 45px #17212e12; overflow: hidden; }
-    .diagnostic-top { padding: 1rem 1.5rem; border-bottom: 1px solid #324051; display: flex; justify-content: space-between; gap: 1rem; color: #aebbd0; font: .65rem ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .05em; }
-    .diagnostic-body { padding: 2rem; }
-    .diagnostic .eyebrow { color: #9bb6ff; margin-bottom: .7rem; }
-    .diagnostic h2 { font-size: 1.55rem; line-height: 1.25; letter-spacing: -.04em; margin-bottom: 1.7rem; }
-    .path-row { display: flex; align-items: flex-start; gap: 1rem; padding: 1.1rem 0; border-top: 1px solid #324051; }
-    .path-number { font: .7rem ui-monospace, SFMono-Regular, Consolas, monospace; color: #9bb6ff; padding-top: .2rem; }
-    .path-row strong { display: block; font-size: .86rem; }
-    .path-row p { color: #b2bfd0; font-size: .77rem; margin: .25rem 0 0; }
-    .diagnostic-foot { padding: 1rem 1.5rem; background: #1a293c; color: #b9c8dd; font-size: .72rem; }
-    .hero-bottom { display: flex; gap: 2rem; flex-wrap: wrap; border-top: 1px solid var(--line); margin-top: 4.5rem; padding-top: 1.5rem; color: var(--muted); font-size: .8rem; }
-    .hero-bottom span::before { content: "+"; color: var(--blue); font-weight: 700; margin-right: .65rem; }
-    section { padding: 5.5rem 0; }
-    .white { background: white; border-block: 1px solid var(--line); }
-    h2 { font-size: clamp(2rem, 3.2vw, 3rem); line-height: 1.15; letter-spacing: -.05em; font-weight: 700; max-width: 46rem; margin-bottom: 1.25rem; }
-    .intro { color: var(--muted); max-width: 43rem; margin-bottom: 3rem; }
-    h3 { font-size: 1.05rem; line-height: 1.3; letter-spacing: -.025em; margin-bottom: .7rem; }
-    .problems { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-top: 3rem; }
-    .problems article { border-top: 2px solid var(--line); padding-top: 1.3rem; }
-    .problems p, .steps p, .industries p { color: var(--muted); font-size: .87rem; margin-bottom: 0; }
-    .small-label { color: var(--blue); font: .7rem ui-monospace, SFMono-Regular, Consolas, monospace; margin-bottom: 1rem; }
-    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-top: 3rem; }
-    .steps .number { font-size: 2rem; font-weight: 350; color: var(--blue); letter-spacing: -.08em; display: block; padding-bottom: 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--line); }
-    .audit-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 5rem; }
-    .inspection { margin: 0; }
-    .inspection div { padding: 1.2rem 0; border-top: 1px solid var(--line); }
-    .inspection dt { font-size: 1rem; font-weight: 700; margin-bottom: .4rem; }
-    .inspection dd { color: var(--muted); font-size: .86rem; margin: 0; }
-    .tag { display: inline-block; font: .62rem ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .025em; padding: .2rem .45rem; background: #edf2ff; color: #2045ad; border-radius: 3px; margin-top: .65rem; }
-    .report { border: 1px solid var(--line); border-radius: 7px; overflow: hidden; margin-top: 2.5rem; background: white; }
-    .report-heading { background: var(--dark); padding: 1.5rem 2rem; color: white; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
-    .report-heading h3 { margin: 0; font-size: 1.15rem; }
-    .report-heading p { color: #b2bfd0; font-size: .75rem; margin: .35rem 0 0; }
-    .demo-badge { font: .65rem ui-monospace, SFMono-Regular, Consolas, monospace; border: 1px solid #71829a; padding: .35rem .6rem; white-space: nowrap; color: #d6e2f5; }
-    .finding { display: grid; grid-template-columns: 2rem 1fr 1fr; gap: 1.5rem; padding: 2rem; border-top: 1px solid var(--line); }
-    .finding > span { font: .7rem ui-monospace, SFMono-Regular, Consolas, monospace; color: var(--blue); padding-top: .2rem; }
-    .finding h4 { margin: 0 0 .6rem; font-size: .95rem; line-height: 1.4; }
-    .finding p { font-size: .8rem; color: var(--muted); margin: 0 0 .65rem; }
-    .finding p:last-child { margin-bottom: 0; }
-    .finding strong { color: var(--ink); font-weight: 650; }
-    .priority { color: #7a470c; background: #fff3df; font-size: .65rem; padding: .25rem .45rem; display: inline-block; border-radius: 3px; margin: .3rem 0 .5rem; }
-    .report-note { padding: 1rem 2rem; background: #f0f3f8; color: var(--muted); font-size: .77rem; margin: 0; border-top: 1px solid var(--line); }
-    .funnel { display: flex; align-items: center; justify-content: space-between; gap: .8rem; padding: 2rem 0; border-block: 1px solid var(--line); margin: 2.5rem 0 1.5rem; font-size: .88rem; font-weight: 650; }
-    .funnel b { color: var(--blue); font-weight: 400; }
-    .industries { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; margin-top: 3rem; }
-    .industries article { border-left: 2px solid var(--line); padding-left: 1.25rem; }
-    .offers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 3rem; }
-    .offer { border: 1px solid var(--line); padding: 2rem; border-radius: 6px; display: flex; flex-direction: column; align-items: flex-start; background: white; }
-    .offer:first-child { border-top: 3px solid var(--blue); padding-top: calc(2rem - 2px); }
-    .offer .price { font-size: 1.4rem; letter-spacing: -.04em; font-weight: 650; margin: 1rem 0 .5rem; }
-    .offer p, .offer li { color: var(--muted); font-size: .84rem; }
-    .offer ul { padding-left: 1.1rem; margin: 1rem 0 2rem; }
-    .offer li { margin-bottom: .6rem; }
-    .offer .button { margin-top: auto; font-size: .8rem; width: 100%; }
-    .why { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
-    .why ul { margin: 0; padding: 0; list-style: none; }
-    .why li { border-top: 1px solid var(--line); padding: .95rem 0; font-size: .9rem; }
-    .why li::before { content: "+"; color: var(--blue); margin-right: .8rem; font-weight: 700; }
-    .faq { max-width: 850px; }
-    details { border-top: 1px solid var(--line); padding: 1.2rem 0; }
-    details:last-child { border-bottom: 1px solid var(--line); }
-    summary { font-size: .95rem; font-weight: 650; cursor: pointer; padding-right: 1rem; }
-    details p { color: var(--muted); font-size: .88rem; margin: 1rem 0 .25rem; max-width: 46rem; }
-    .scan-box { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; padding: 3rem; border: 1px solid var(--line); border-radius: 8px; background: white; }
-    .scan-box h2 { font-size: 2rem; }
-    .scan-box p { color: var(--muted); font-size: .88rem; }
-    label { display: block; font-weight: 650; font-size: .85rem; margin-bottom: .6rem; }
-    input { width: 100%; padding: .85rem 1rem; border: 1px solid #8693a5; border-radius: 4px; background: white; color: var(--ink); margin-bottom: .8rem; }
-    form .button { width: 100%; }
-    form .fine { margin: 1rem 0 0; font-size: .75rem; }
-    .final { background: var(--dark); color: white; text-align: center; }
-    .final .eyebrow { color: #9bb6ff; }
-    .final h2 { margin-inline: auto; }
-    .final p { color: #b9c8dd; max-width: 39rem; margin-inline: auto; }
-    .final .actions { justify-content: center; }
-    .final .email { color: #d9e4ff; font-size: .85rem; }
-    footer { padding: 3rem 0 1.5rem; }
-    .footer-top { display: flex; align-items: start; justify-content: space-between; gap: 2rem; margin-bottom: 2rem; }
-    .footer-top p { color: var(--muted); font-size: .8rem; margin-top: .6rem; }
-    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; font-size: .8rem; }
-    .footer-links a { color: var(--muted); }
-    .legal { margin-top: 1rem; }
-    .legal summary { font-size: .8rem; font-weight: 500; color: var(--muted); }
-    .legal p { font-size: .77rem; max-width: 55rem; }
-    .copyright { font-size: .7rem; color: var(--muted); margin: 1.5rem 0 0; }
-    @media (min-width: 1000px) { .audit-intro { position: sticky; top: 7rem; align-self: start; } }
-    @media (max-width: 1000px) {
-      .hero-grid { gap: 2rem; }
-      .nav-links { gap: 1rem; }
-      .nav-links > a:not(.button) { font-size: .78rem; }
-      .audit-grid { gap: 3rem; }
-      .offer { padding: 1.5rem; }
-      .offer:first-child { padding-top: calc(1.5rem - 2px); }
+    .header { position: relative; z-index: 5; }
+    .header-inner { display: flex; justify-content: space-between; align-items: center; gap: 2rem; min-height: 100px; border-bottom: 1px solid var(--line); }
+    .wordmark { display: inline-flex; align-items: center; gap: .65rem; font-size: 1.6rem; line-height: 1; font-weight: 750; letter-spacing: -.075em; text-decoration: none; }
+    .brand-mark { width: 30px; height: 30px; }
+    .desktop-nav { display: flex; align-items: center; gap: 1.7rem; }
+    .desktop-nav > a:not(.button) { display: inline-flex; align-items: center; min-height: 44px; color: var(--muted); font-size: .83rem; text-decoration: none; }
+    .desktop-nav > a:not(.button):hover { color: var(--ink); }
+    .desktop-nav .button { min-height: 46px; gap: 1rem; font-size: .8rem; padding: .7rem 1rem; }
+    .mobile-nav { display: none; }
+    .hero { padding-top: 5rem; }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 3.5rem; align-items: center; }
+    .hero .eyebrow { margin-bottom: 1.8rem; }
+    h1 { font-size: clamp(3.8rem, 6.3vw, 5.6rem); letter-spacing: -.075em; line-height: 1.025; }
+    h1 .serif { display: block; white-space: nowrap; padding-bottom: .1em; }
+    .hero-description { max-width: 31rem; margin-top: 1.6rem; color: var(--muted); font-size: 1.07rem; line-height: 1.75; }
+    .hero-offer { margin-top: 1.65rem; max-width: 30rem; font-size: .88rem; line-height: 1.65; }
+    .hero-offer strong { font-size: 1rem; }
+    .hero-offer small { display: block; color: var(--muted); font-size: .77rem; margin-top: .25rem; }
+    .hero-action { display: flex; align-items: center; flex-wrap: wrap; gap: 1rem 1.2rem; margin-top: 1.75rem; }
+    .hero-action > span { font-size: .77rem; line-height: 1.5; color: var(--muted); }
+    .email-fallback { margin-top: 1.1rem; color: var(--muted); font-size: .8rem; }
+    .email-fallback a { color: var(--ink); }
+    .journey { position: relative; isolation: isolate; min-width: 0; padding: 1.4rem 1.6rem 1.2rem; background: #e4edce; border: 1px solid #d2ddba; border-radius: 8px; }
+    .journey::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; background-image: radial-gradient(#91a27b50 .7px, transparent .7px); background-size: 13px 13px; }
+    .figure-label { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 1rem; color: #405638; font: .62rem/1.6 var(--mono); letter-spacing: .055em; text-transform: uppercase; }
+    .figure-label span:last-child { letter-spacing: 0; text-transform: none; }
+    .journey-title { margin: 1.6rem 0 1.5rem; font-size: 2rem; line-height: 1.05; letter-spacing: -.06em; }
+    .journey-title .serif { font-size: 1.1em; }
+    .journey-map { position: relative; padding: 0 0 0 1.7rem; }
+    .journey-map::before { content: ""; position: absolute; top: 1.7rem; bottom: 2rem; left: .4rem; border-left: 1px dashed #526c46; }
+    .journey-stop { position: relative; display: grid; grid-template-columns: 1fr 70px; align-items: center; gap: 1rem; padding: 1.05rem 1.2rem; margin: .75rem 0; background: var(--white); border: 1px solid #d2ddba; border-radius: 5px; box-shadow: 0 4px 0 #bccba530; }
+    .journey-stop::before { content: ""; position: absolute; left: -1.65rem; top: 1.45rem; width: .7rem; height: .7rem; border: 2px solid #e4edce; border-radius: 50%; background: var(--green); outline: 1px solid var(--green); }
+    .journey-stop:nth-child(2) { margin-left: .7rem; }
+    .journey-stop:nth-child(2)::before { left: -2.35rem; }
+    .journey-stop:nth-child(3) { margin-left: 1.4rem; }
+    .journey-stop:nth-child(3)::before { left: -3.05rem; }
+    .stop-label { display: block; color: var(--muted); font: .59rem/1.5 var(--mono); letter-spacing: .04em; text-transform: uppercase; }
+    .stop-title { font-size: 1.08rem; font-weight: 600; letter-spacing: -.025em; margin-top: .35rem; line-height: 1.25; }
+    .stop-art { width: 70px; height: 64px; }
+    .journey-destination { display: flex; align-items: center; gap: .65rem; margin: 1.25rem 0 .6rem 1.7rem; font-size: .82rem; font-weight: 600; }
+    .journey-destination svg { width: 24px; height: 24px; }
+    .journey-note { margin-top: 1.5rem; padding-top: .9rem; border-top: 1px solid #bccbaa; font-size: .66rem; color: #4c6142; }
+    .hero-foot { margin-top: 4rem; padding-block: 1.3rem; border-block: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem 2rem; font-size: .76rem; color: var(--muted); }
+    .hero-foot strong { color: var(--ink); font-weight: 600; }
+    .hero-foot .audiences { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; }
+    .difference-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 7rem; }
+    .section h2 { font-size: clamp(2.4rem, 4vw, 3.5rem); letter-spacing: -.065em; }
+    .section-heading .eyebrow { margin-bottom: 1.5rem; }
+    .section-heading > p:not(.eyebrow) { margin-top: 1.5rem; max-width: 30rem; color: var(--muted); font-size: .98rem; }
+    .section-heading .text-link { display: inline-flex; align-items: center; gap: 1.5rem; min-height: 44px; margin-top: 1.4rem; font-size: .85rem; font-weight: 600; }
+    .benefits { margin: 0; padding: 0; list-style: none; }
+    .benefits li { display: grid; grid-template-columns: 2rem 1fr; gap: 1.1rem; padding: 1.5rem 0; border-top: 1px solid var(--line); }
+    .benefits li:first-child { padding-top: .5rem; border-top: 0; }
+    .benefits .index { padding-top: .2rem; font: .7rem/1.5 var(--mono); color: var(--muted); }
+    .benefits h3 { font-size: 1.3rem; letter-spacing: -.035em; }
+    .benefits p { margin-top: .65rem; color: var(--muted); font-size: .9rem; }
+    .benefits .detail { display: block; margin-top: .7rem; font: .63rem/1.6 var(--mono); color: var(--green); }
+    .dark { background: var(--deep); color: var(--white); }
+    .report-grid { display: grid; grid-template-columns: .9fr 1.1fr; align-items: center; gap: 5.5rem; }
+    .dark .eyebrow { color: var(--lime); }
+    .dark .section-heading > p:not(.eyebrow) { color: #c0d0be; }
+    .report-points { display: grid; gap: 1.1rem; margin: 2rem 0 0; padding: 0; list-style: none; }
+    .report-points li { display: flex; align-items: flex-start; gap: .8rem; color: #c0d0be; font-size: .86rem; }
+    .report-points svg { width: 18px; height: 18px; margin-top: .15rem; color: var(--lime); }
+    .report-points strong { color: var(--white); font-weight: 600; }
+    .report-sheet { background: var(--white); color: var(--ink); border-radius: 5px; box-shadow: 9px 9px 0 #ffffff0b; overflow: hidden; }
+    .report-caption { padding: .75rem 1.5rem; background: var(--lime); color: var(--ink); display: flex; flex-wrap: wrap; justify-content: space-between; gap: .25rem .7rem; font: .61rem/1.5 var(--mono); }
+    .report-caption strong { font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
+    .report-content { padding: 1.75rem 1.75rem 0; }
+    .report-masthead { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; padding-bottom: 1.5rem; }
+    .report-masthead > div > p { color: var(--muted); font: .63rem/1.5 var(--mono); }
+    .report-masthead h3 { font-size: 1.7rem; letter-spacing: -.055em; margin-top: .5rem; line-height: 1.15; }
+    .report-masthead .brand-mark { width: 25px; height: 25px; }
+    .report-entry { padding-block: 1.15rem; border-top: 1px solid var(--line); }
+    .report-entry-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .5rem; margin-bottom: .45rem; }
+    .report-entry h4 { margin: 0; font-size: .84rem; font-weight: 650; }
+    .report-entry p { color: var(--muted); font-size: .8rem; line-height: 1.65; }
+    .status { padding: .2rem .45rem; border-radius: 3px; font: .59rem/1.5 var(--mono); color: #5e4b19; background: #f2e9cf; }
+    .status.checked { color: #2c5138; background: #e2eddd; }
+    .status.missing { color: #555e56; background: #eaece5; }
+    .report-next { display: flex; gap: .9rem; padding: 1.2rem 1.75rem; background: #edf1e6; border-top: 1px solid var(--line); font-size: .8rem; }
+    .report-next svg { width: 20px; height: 20px; margin-top: .1rem; }
+    .report-next strong { display: block; margin-bottom: .15rem; font: 600 .6rem/1.5 var(--mono); text-transform: uppercase; letter-spacing: .04em; }
+    .report-context { margin-top: 1rem; color: #c0d0be; font-size: .72rem; }
+    .plan-section { background: #eff2e7; }
+    .plan-intro { display: flex; align-items: flex-end; justify-content: space-between; gap: 3rem; margin-bottom: 3rem; }
+    .plan-intro h2 { max-width: 38rem; }
+    .plan-intro > p { max-width: 19rem; color: var(--muted); font-size: .9rem; }
+    .plan { display: grid; grid-template-columns: .85fr 1.15fr; background: var(--white); border: 1px solid #bbc8b2; border-radius: 6px; }
+    .plan-price { padding: 2.75rem; border-right: 1px solid var(--line); }
+    .plan-name { font: 600 .69rem/1.5 var(--mono); text-transform: uppercase; letter-spacing: .09em; }
+    .price { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem 1rem; margin: 1.15rem 0 .75rem; }
+    .price-amount { font-size: 6.5rem; line-height: 1; font-weight: 500; letter-spacing: -.085em; }
+    .price-unit { font-size: .86rem; color: var(--muted); }
+    .plan-fit { color: var(--muted); max-width: 21rem; font-size: .84rem; }
+    .plan-price .button { width: 100%; margin-top: 2rem; }
+    .plan-note { margin-top: .75rem; color: var(--muted); text-align: center; font-size: .73rem; }
+    .plan-inclusions { margin: 0; padding: .5rem 2.75rem; }
+    .plan-inclusions > div { padding-block: 1.9rem; }
+    .plan-inclusions > div + div { border-top: 1px solid var(--line); }
+    .plan-inclusions dt { display: flex; gap: .65rem; align-items: center; font-size: 1.05rem; font-weight: 650; letter-spacing: -.025em; }
+    .plan-inclusions dt svg { width: 20px; height: 20px; }
+    .plan-inclusions dd { margin: .6rem 0 0 1.9rem; color: var(--muted); font-size: .87rem; }
+    .scope { display: grid; grid-template-columns: .85fr 1.15fr; gap: 2.5rem; margin-top: 1.5rem; color: var(--muted); font-size: .76rem; line-height: 1.75; }
+    .scope strong { color: var(--ink); font-weight: 650; }
+    .scope p + p { margin-top: .7rem; }
+    .process-section { border-bottom: 1px solid var(--line); }
+    .process-heading { display: flex; justify-content: space-between; align-items: flex-end; gap: 3rem; }
+    .process-heading > p { max-width: 20rem; color: var(--muted); font-size: .88rem; }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; margin: 3rem 0 0; padding: 0; list-style: none; }
+    .steps li { padding-top: 1.2rem; border-top: 1px solid #b6c2ac; }
+    .step-number { display: block; margin-bottom: 1.4rem; font: .75rem/1 var(--mono); color: var(--muted); }
+    .steps h3 { font-size: 1.3rem; letter-spacing: -.04em; }
+    .steps p { margin-top: .8rem; color: var(--muted); font-size: .87rem; }
+    .faq-grid { display: grid; grid-template-columns: .75fr 1.25fr; gap: 6rem; }
+    .faq-list details { border-top: 1px solid var(--line); }
+    .faq-list details:last-child { border-bottom: 1px solid var(--line); }
+    .faq-list summary { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; min-height: 72px; padding-block: 1.2rem; list-style: none; font-size: .97rem; font-weight: 600; line-height: 1.45; }
+    .faq-list summary::-webkit-details-marker, .mobile-nav summary::-webkit-details-marker, .speed-check > summary::-webkit-details-marker { display: none; }
+    .faq-list summary::after { content: "+"; flex-shrink: 0; font-size: 1.2rem; font-weight: 400; color: var(--muted); }
+    .faq-list details[open] > summary::after { content: "−"; }
+    .faq-list details > p { padding: 0 2rem 1.5rem 0; color: var(--muted); font-size: .87rem; }
+    .speed-check { margin-top: 2.5rem; padding: 0 1.5rem; border: 1px solid #c6d1ba; background: #edf1e4; border-radius: 4px; }
+    .speed-check > summary { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 64px; padding-block: 1rem; list-style: none; font-size: .88rem; line-height: 1.5; font-weight: 600; }
+    .speed-check > summary::after { content: "+"; font-size: 1.2rem; font-weight: 400; }
+    .speed-check[open] > summary::after { content: "−"; }
+    .speed-check > p { font-size: .82rem; color: var(--muted); margin-bottom: 1.25rem; }
+    .speed-check form { padding-bottom: 1.5rem; }
+    .speed-check label { display: block; font-size: .8rem; font-weight: 600; margin-bottom: .45rem; }
+    .speed-input { display: flex; align-items: stretch; gap: .65rem; }
+    .speed-input input { min-width: 0; width: 100%; min-height: 48px; border: 1px solid #87967d; border-radius: 3px; padding: .7rem .8rem; background: var(--white); color: var(--ink); font-size: .83rem; }
+    .speed-input input::placeholder { color: #687264; opacity: 1; }
+    .speed-input button { flex-shrink: 0; gap: .8rem; font-size: .75rem; min-height: 48px; }
+    .scan-disclosure { margin-top: .9rem; color: var(--muted); font-size: .74rem; line-height: 1.65; }
+    .contact { padding-block: 5rem; }
+    .contact-inner { display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; gap: 6rem; }
+    .contact h2 { margin-top: 1.25rem; font-size: clamp(2.7rem, 4.5vw, 4.2rem); letter-spacing: -.065em; }
+    .contact h2 .serif { display: block; color: var(--lime); }
+    .contact-copy > p { color: #c0d0be; font-size: .95rem; max-width: 27rem; }
+    .contact-copy .button { margin-top: 1.5rem; min-width: 230px; }
+    .contact-email { margin-top: 1.2rem; color: #c0d0be; font-size: .8rem; }
+    .contact-email a { color: var(--white); display: inline-block; overflow-wrap: anywhere; }
+    footer { padding-block: 3rem 1.5rem; }
+    .footer-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; padding-bottom: 2rem; }
+    .footer-top .wordmark { font-size: 1.4rem; }
+    .footer-tagline { color: var(--muted); font-size: .75rem; margin-top: .7rem; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: .25rem 1.5rem; }
+    .footer-links a { display: inline-flex; align-items: center; min-height: 44px; font-size: .77rem; color: var(--muted); }
+    .legal { border-top: 1px solid var(--line); }
+    .legal summary { width: fit-content; min-height: 44px; padding: .7rem .25rem .7rem 0; color: var(--muted); font-size: .74rem; }
+    .legal p { max-width: 65rem; margin: .3rem 0 1rem; color: var(--muted); font-size: .75rem; }
+    .copyright { margin-top: 1.5rem; color: var(--muted); font: .64rem/1.65 var(--mono); }
+    @media (min-width: 1500px) {
+      .hero { padding-top: 6rem; }
+      .hero-grid { gap: 5.5rem; }
     }
-    @media (max-width: 760px) {
-      .wrap { width: min(100% - 2rem, 580px); }
-      .nav { min-height: 68px; gap: 1rem; }
-      .wordmark { font-size: 1.4rem; }
-      .nav-links > a:not(.button) { display: none; }
-      .nav .button { font-size: .7rem; padding: .6rem .8rem; min-height: 42px; }
-      .hero { padding: 3.5rem 0 2.5rem; }
-      .hero-grid, .audit-grid, .why, .scan-box { grid-template-columns: 1fr; gap: 2.5rem; }
-      h1 { font-size: clamp(2.9rem, 10.8vw, 4rem); max-width: 34rem; }
-      .hero-copy { font-size: 1rem; }
-      .hero-bottom { margin-top: 2.5rem; gap: .5rem 1.5rem; }
-      .diagnostic-body { padding: 1.5rem; }
-      section { padding: 3.5rem 0; }
-      .problems, .steps, .industries { grid-template-columns: 1fr 1fr; gap: 2rem 1.5rem; }
-      .offers { grid-template-columns: 1fr; }
-      .offer { padding: 1.75rem; }
-      .offer:first-child { padding-top: calc(1.75rem - 2px); }
-      .finding { grid-template-columns: 1.5rem 1fr; gap: .5rem 1rem; padding: 1.5rem; }
-      .finding > div:last-child { grid-column: 2; margin-top: .4rem; }
-      .report-heading { padding: 1.5rem; align-items: flex-start; flex-direction: column; }
-      .report-note { padding: 1rem 1.5rem; }
-      .funnel { flex-direction: column; gap: .4rem; align-items: start; padding-left: 1rem; }
-      .funnel b { transform: rotate(90deg); margin-left: 1rem; }
-      .scan-box { padding: 1.5rem; }
-      .footer-top { flex-direction: column; gap: 1rem; }
+    @media (max-width: 1100px) {
+      .wrap { width: calc(100% - 4rem); }
+      .desktop-nav { gap: 1.1rem; }
+      .hero-grid { gap: 2.5rem; }
+      h1 { font-size: clamp(3.35rem, 6.3vw, 5.6rem); }
+      .journey { padding: 1.25rem; }
+      .journey-stop { grid-template-columns: 1fr 54px; padding: 1rem; gap: .5rem; }
+      .stop-art { width: 54px; height: 58px; }
+      .stop-title { font-size: 1rem; }
+      .difference-grid, .report-grid, .faq-grid, .contact-inner { gap: 3.5rem; }
+      .plan-price { padding: 2rem; }
+      .plan-inclusions { padding-inline: 2rem; }
+      .speed-input { flex-direction: column; }
+      .speed-input button { align-self: flex-start; }
     }
-    @media (max-width: 380px) {
-      .problems, .steps, .industries { grid-template-columns: 1fr; }
-      .wordmark { gap: .35rem; font-size: 1.2rem; }
-      .mark { width: 20px; }
-      .nav .button { padding-inline: .6rem; font-size: .66rem; }
-      .hero .actions .button { width: 100%; }
+    @media (max-width: 820px) {
+      .wrap { width: min(680px, calc(100% - 3rem)); }
+      .header-inner { min-height: 84px; }
+      .desktop-nav { display: none; }
+      .mobile-nav { display: block; }
+      .mobile-nav > summary { display: flex; align-items: center; gap: .65rem; min-height: 44px; padding: .5rem; list-style: none; font-size: .84rem; }
+      .mobile-nav summary svg { width: 20px; height: 20px; }
+      .mobile-nav[open] summary svg { transform: rotate(90deg); }
+      .mobile-nav nav { position: absolute; left: 0; right: 0; top: 100%; padding: 1rem 1.5rem 1.5rem; background: var(--paper); border-bottom: 1px solid var(--line); box-shadow: 0 12px 16px #19372d0a; }
+      .mobile-nav nav > a:not(.button) { display: flex; align-items: center; min-height: 48px; font-size: .94rem; text-decoration: none; }
+      .mobile-nav nav .button { width: 100%; margin-top: .65rem; }
+      .hero { padding-top: 3.25rem; }
+      .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+      h1 { font-size: clamp(3.4rem, 10.5vw, 5.2rem); max-width: 38rem; }
+      .hero-description { max-width: 34rem; }
+      .journey { padding: 1.5rem 2rem; }
+      .journey-title { margin-block: 1.5rem; font-size: 2.1rem; }
+      .journey-map { max-width: 440px; margin-inline: auto; }
+      .journey-stop { grid-template-columns: 1fr 80px; padding: 1.1rem 1.5rem; }
+      .stop-title { font-size: 1.2rem; }
+      .stop-art { width: 80px; height: 64px; }
+      .journey-destination { justify-content: center; margin-block: 1.5rem .5rem; }
+      .hero-foot { margin-top: 2.5rem; }
+      .section { padding-block: 4.5rem; }
+      .difference-grid, .report-grid, .faq-grid, .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .section h2 { max-width: 36rem; font-size: clamp(2.3rem, 6.8vw, 3.2rem); }
+      .section-heading > p:not(.eyebrow) { max-width: 35rem; }
+      .report-points { max-width: 35rem; }
+      .report-sheet { max-width: 36rem; }
+      .report-content { padding: 1.75rem 2rem 0; }
+      .report-next { padding-inline: 2rem; }
+      .plan-intro { display: block; margin-bottom: 2rem; }
+      .plan-intro > p { max-width: 32rem; margin-top: 1rem; }
+      .plan { grid-template-columns: .9fr 1.1fr; }
+      .plan-price { padding: 1.75rem; }
+      .price-amount { font-size: 5.2rem; }
+      .plan-inclusions { padding: .25rem 1.5rem; }
+      .plan-inclusions > div { padding-block: 1.5rem; }
+      .plan-inclusions dd { margin-left: 0; }
+      .scope { gap: 1.5rem; }
+      .process-heading { display: block; }
+      .process-heading > p { margin-top: 1.25rem; max-width: 32rem; }
+      .steps { gap: 1.5rem; }
+      .steps h3 { font-size: 1.1rem; }
+      .steps p { font-size: .84rem; }
+      .speed-input { flex-direction: row; }
+      .speed-input button { align-self: auto; }
+      .contact { padding-block: 4rem; }
+      .contact h2 { font-size: clamp(2.7rem, 8vw, 3.8rem); }
+      .contact-copy > p { max-width: 33rem; }
+    }
+    @media (max-width: 520px) {
+      .wrap { width: calc(100% - 2.5rem); }
+      .header-inner { min-height: 76px; gap: 1rem; }
+      .wordmark { font-size: 1.45rem; gap: .5rem; }
+      .brand-mark { width: 27px; height: 27px; }
+      .hero { padding-top: 2.5rem; }
+      .hero .eyebrow { font-size: .61rem; margin-bottom: 1.35rem; }
+      h1 { font-size: clamp(3rem, 11.8vw, 4.7rem); }
+      .hero-description { font-size: .99rem; }
+      .hero-action { gap: 1rem; }
+      .hero-action > span { font-size: .73rem; }
+      .email-fallback { font-size: .76rem; }
+      .journey { padding: 1.15rem; }
+      .journey-title { font-size: 1.8rem; margin-block: 1.35rem; }
+      .journey-stop { grid-template-columns: 1fr 50px; gap: .4rem; padding: .95rem .8rem; }
+      .stop-title { font-size: .97rem; }
+      .stop-label { font-size: .53rem; }
+      .stop-art { width: 50px; height: 55px; }
+      .journey-stop:nth-child(2) { margin-left: .35rem; }
+      .journey-stop:nth-child(2)::before { left: -2rem; }
+      .journey-stop:nth-child(3) { margin-left: .7rem; }
+      .journey-stop:nth-child(3)::before { left: -2.35rem; }
+      .journey-destination { font-size: .74rem; justify-content: flex-start; }
+      .hero-foot { font-size: .71rem; gap: .5rem; }
+      .hero-foot .audiences { gap: .35rem 1rem; }
+      .section { padding-block: 3.5rem; }
+      .section h2 { font-size: 2.4rem; }
+      .section-heading .eyebrow { font-size: .64rem; }
+      .benefits li { grid-template-columns: 1.5rem 1fr; gap: .75rem; }
+      .benefits h3 { font-size: 1.17rem; }
+      .report-caption { padding: .7rem 1.15rem; }
+      .report-content { padding: 1.5rem 1.15rem 0; }
+      .report-masthead h3 { font-size: 1.55rem; }
+      .report-next { padding: 1.1rem 1.15rem; }
+      .report-context { font-size: .7rem; }
+      .plan { grid-template-columns: 1fr; }
+      .plan-price { padding: 1.75rem; border-right: 0; border-bottom: 1px solid var(--line); }
+      .price-amount { font-size: 6rem; }
+      .plan-price .button { margin-top: 1.5rem; }
+      .plan-inclusions { padding: .25rem 1.75rem; }
+      .plan-inclusions dd { margin-left: 1.9rem; }
+      .scope { grid-template-columns: 1fr; gap: .75rem; }
+      .steps { grid-template-columns: 1fr; gap: 1.5rem; margin-top: 2rem; }
+      .step-number { margin-bottom: .9rem; }
+      .steps h3 { font-size: 1.2rem; }
+      .steps p { font-size: .88rem; }
+      .faq-list summary { font-size: .9rem; }
+      .speed-check { padding-inline: 1.1rem; }
+      .speed-input { flex-direction: column; }
+      .speed-input button { width: 100%; }
+      .contact h2 { font-size: 2.85rem; }
+      .contact-copy .button { width: 100%; }
+      .footer-top { flex-direction: column; gap: 1.25rem; padding-bottom: 1.5rem; }
+      .footer-links { gap: .25rem 1.25rem; }
+    }
+    @media (max-width: 350px) {
+      .wrap { width: calc(100% - 2rem); }
+      h1 { font-size: 2.95rem; }
+      .hero-action { align-items: flex-start; flex-direction: column; gap: .65rem; }
+      .hero-action .button { width: 100%; }
+      .hero-action > span br { display: none; }
+      .journey { padding: 1rem; }
+      .journey-stop { padding-inline: .7rem; grid-template-columns: 1fr 42px; }
+      .stop-art { width: 42px; }
+      .stop-title { font-size: .91rem; }
+      .journey-destination { margin-left: .5rem; }
+      .plan-price, .plan-inclusions { padding-inline: 1.3rem; }
+      .plan-inclusions dd { margin-left: 0; }
+      .contact h2 { font-size: 2.55rem; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -178,234 +355,248 @@
     }
   </style>
 </head>
-<body>
+<body id="top">
   <a class="skip" href="#main">Skip to content</a>
-  <header>
-    <nav class="wrap nav" aria-label="Main navigation">
-      <a class="wordmark" href="#" aria-label="Frictionless home">
-        <svg class="mark" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 19V5h18M3 12h13" stroke="currentColor" stroke-width="3"/></svg>
-        frictionless<span style="color:var(--blue)">.</span>
+  <header class="header">
+    <div class="wrap header-inner">
+      <a class="wordmark" href="#top" aria-label="Frictionless home">
+        <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M5 25V7h22M5 16h16" stroke="currentColor" stroke-width="3.5"/><path d="m20 21 6-6-6-6" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/></svg>
+        frictionless.
       </a>
-      <div class="nav-links">
-        <a href="#how-it-works">How it works</a>
-        <a href="#what-we-fix">What we fix</a>
-        <a href="#services">Services</a>
-        <a href="#faq">FAQ</a>
-        <a class="button" href="mailto:alex@frictionless.fyi?subject=Free%20website%20review">Get a free review <span aria-hidden="true">↗</span></a>
-      </div>
-    </nav>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="#the-difference">The difference</a>
+        <a href="#your-report">Your monthly report</a>
+        <a href="#plan">The $10 plan</a>
+        <a class="button" href="mailto:alex@frictionless.fyi?subject=Free%20website%20review&amp;body=Website%3A%20%0AWhat%20I%20would%20like%20to%20improve%3A%20">Review my site <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8"/></svg></a>
+      </nav>
+      <details class="mobile-nav" id="mobile-menu">
+        <summary>Menu <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 8h16M4 16h16" stroke="currentColor" stroke-width="1.7"/></svg></summary>
+        <nav aria-label="Mobile navigation">
+          <a href="#the-difference">The difference</a>
+          <a href="#your-report">Your monthly report</a>
+          <a href="#plan">The $10 plan</a>
+          <a href="#how-it-works">How it works</a>
+          <a href="#faq">Questions, answered</a>
+          <a class="button" href="mailto:alex@frictionless.fyi?subject=Free%20website%20review&amp;body=Website%3A%20%0AWhat%20I%20would%20like%20to%20improve%3A%20">Review my site <span aria-hidden="true">↗</span></a>
+        </nav>
+      </details>
+    </div>
   </header>
   <main id="main">
-    <section class="hero">
+    <section class="hero" aria-labelledby="hero-title">
       <div class="wrap">
         <div class="hero-grid">
-          <div>
-            <p class="eyebrow">Website performance & conversion optimization</p>
-            <h1>Less friction.<br><span>More customers.</span></h1>
-            <p class="hero-copy">Your website is getting visitors. Is it turning them into customers?</p>
-            <p class="hero-copy">Know what's slowing your website down—and what to fix first. We turn performance, usability, and measurement problems into clear next steps, then help you act on them.</p>
-            <div class="actions">
-              <a class="button" href="mailto:alex@frictionless.fyi?subject=Free%20website%20review&body=Website%3A%20%0AWhat%20I%20would%20like%20to%20improve%3A%20">Get my free website review <span aria-hidden="true">↗</span></a>
-              <a class="button secondary" href="#how-it-works">See how it works</a>
+          <div class="hero-copy">
+            <p class="eyebrow">Good businesses deserve better websites</p>
+            <h1 id="hero-title">Make it easy<br><em class="serif">to choose you.</em></h1>
+            <p class="hero-description">You do the good work. We help your website bring it in—with faster pages, a better mobile experience, and fewer obstacles between “interested” and “in touch.”</p>
+            <p class="hero-offer"><strong>$10/month USD.</strong> Hosting, ongoing small improvements, and a plain-English monthly report.<small>For supported small brochure and service-business sites.</small></p>
+            <div class="hero-action">
+              <a class="button" href="mailto:alex@frictionless.fyi?subject=Free%20website%20review&amp;body=Website%3A%20%0AWhat%20I%20would%20like%20to%20improve%3A%20">Review my site <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8"/></svg></a>
+              <span>A free first look.<br>No obligation to buy.</span>
             </div>
-            <p class="fine">Start with your website URL by email. No obligation to buy.</p>
+            <p class="email-fallback">Or email <a href="mailto:alex@frictionless.fyi">alex@frictionless.fyi</a></p>
           </div>
-          <div class="diagnostic" aria-label="An illustration of the Frictionless approach">
-            <div class="diagnostic-top"><span>THE PATH TO A BETTER WEBSITE</span><span aria-hidden="true">↗</span></div>
-            <div class="diagnostic-body">
-              <p class="eyebrow">Not another score. A next step.</p>
-              <h2>Find the friction.<br>Make the way forward clear.</h2>
-              <div class="path-row"><span class="path-number">01</span><div><strong>Can visitors use your website?</strong><p>Loading speed, mobile usability, technical reliability.</p></div></div>
-              <div class="path-row"><span class="path-number">02</span><div><strong>Can they take the next step?</strong><p>Clear services, useful information, working contact paths.</p></div></div>
-              <div class="path-row"><span class="path-number">03</span><div><strong>Can you see what makes a difference?</strong><p>Calls, forms, bookings, and meaningful measurement.</p></div></div>
+          <figure class="journey" aria-labelledby="journey-caption">
+            <figcaption class="figure-label" id="journey-caption"><span>A clearer customer journey</span><span>Concept illustration</span></figcaption>
+            <p class="journey-title">A little less friction.<br><em class="serif">A better way in.</em></p>
+            <div class="journey-map">
+              <div class="journey-stop">
+                <div><span class="stop-label">01 / The first impression</span><p class="stop-title">Less waiting.</p></div>
+                <svg class="stop-art" viewBox="0 0 80 64" fill="none" aria-hidden="true"><rect x="9" y="10" width="62" height="44" rx="4" fill="#edf1e4" stroke="#7f936c"/><path d="M9 21h62" stroke="#7f936c"/><circle cx="16" cy="16" r="1.5" fill="#214d39"/><circle cx="22" cy="16" r="1.5" fill="#214d39"/><path d="M19 32h21M19 39h14M19 46h10" stroke="#7f936c" stroke-width="2"/><path d="m51 26-10 15h9l-2 13 13-18h-9l4-10" fill="#ddf796" stroke="#214d39" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="journey-stop">
+                <div><span class="stop-label">02 / The mobile experience</span><p class="stop-title">Less hunting.</p></div>
+                <svg class="stop-art" viewBox="0 0 80 64" fill="none" aria-hidden="true"><rect x="25" y="5" width="31" height="54" rx="5" fill="#edf1e4" stroke="#7f936c"/><path d="M35 10h11M36 54h9" stroke="#7f936c" stroke-linecap="round"/><rect x="30" y="18" width="21" height="13" rx="2" fill="#ddf796"/><path d="M31 37h17M31 42h12" stroke="#7f936c" stroke-width="2"/><circle cx="57" cy="36" r="12" fill="#fffef9" stroke="#214d39"/><path d="m52 36 3 3 6-6" stroke="#214d39" stroke-width="2"/></svg>
+              </div>
+              <div class="journey-stop">
+                <div><span class="stop-label">03 / The next step</span><p class="stop-title">Less hassle.</p></div>
+                <svg class="stop-art" viewBox="0 0 80 64" fill="none" aria-hidden="true"><path d="M13 14h44a5 5 0 0 1 5 5v23a5 5 0 0 1-5 5H34L22 56v-9h-9a5 5 0 0 1-5-5V19a5 5 0 0 1 5-5Z" fill="#edf1e4" stroke="#7f936c"/><path d="M19 26h30M19 33h21" stroke="#7f936c" stroke-width="2"/><circle cx="60" cy="19" r="14" fill="#ddf796" stroke="#214d39"/><path d="M53 19h13m-5-5 5 5-5 5" stroke="#214d39" stroke-width="1.8"/></svg>
+              </div>
             </div>
-            <div class="diagnostic-foot">Our review framework · not results from your website</div>
+            <p class="journey-destination"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 5v8a5 5 0 0 0 5 5h9m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.5"/></svg>Make getting in touch feel natural.</p>
+            <p class="journey-note">The goal: fewer obstacles between a visitor and a conversation.</p>
+          </figure>
+        </div>
+        <div class="hero-foot">
+          <strong>Made for businesses built on good service.</strong>
+          <div class="audiences"><span>Home services</span><span>Local practices</span><span>Independent professionals</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="the-difference" aria-labelledby="difference-title">
+      <div class="wrap difference-grid">
+        <div class="section-heading">
+          <p class="eyebrow">Keep the interest. Lose the obstacles.</p>
+          <h2 id="difference-title">They found you.<br>Don’t make them<br><em class="serif">work for it.</em></h2>
+          <p>A referral, a search, an ad. Whatever brought someone to your site, the next few moments should help them choose you—not give them a reason to leave.</p>
+          <a class="text-link" href="#plan">See what $10/month includes <span aria-hidden="true">↗</span></a>
+        </div>
+        <ol class="benefits">
+          <li><span class="index" aria-hidden="true">01</span><div><h3>Be there before they give up.</h3><p>Heavy pages make a simple visit feel slow. We use PageSpeed checks to find the drag, prioritize practical fixes, and recheck what changed.</p><span class="detail">Lighter images · Fewer unnecessary scripts · Faster loading</span></div></li>
+          <li><span class="index" aria-hidden="true">02</span><div><h3>Fit the screen in their hand.</h3><p>Your next inquiry might start between errands. Make services easy to read, navigation easy to use, and contact details easy to find on a phone.</p><span class="detail">Readable layouts · Usable buttons · Clear contact paths</span></div></li>
+          <li><span class="index" aria-hidden="true">03</span><div><h3>Make “let’s talk” the easy part.</h3><p>Tell people what you do, where you work, and how to take the next step. Remove avoidable detours from quote requests, calls, and bookings.</p><span class="detail">Clearer copy · Simpler forms · Less drop-off</span></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section dark" id="your-report" aria-labelledby="report-title">
+      <div class="wrap report-grid">
+        <div class="section-heading">
+          <p class="eyebrow">Progress, without the jargon</p>
+          <h2 id="report-title">What changed.<br>What it means.<br><em class="serif">What’s next.</em></h2>
+          <p>You shouldn’t need a second report to understand the first. Each month, get a plain-English view of your website’s health and the work moving it forward.</p>
+          <ul class="report-points">
+            <li><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m3 10 4 4 10-10" stroke="currentColor" stroke-width="1.5"/></svg><span><strong>The useful numbers.</strong> PageSpeed checks and available traffic or inquiry metrics—with context, not just a score.</span></li>
+            <li><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m3 10 4 4 10-10" stroke="currentColor" stroke-width="1.5"/></svg><span><strong>The actual work.</strong> Small, agreed improvements and what was checked after each change.</span></li>
+            <li><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m3 10 4 4 10-10" stroke="currentColor" stroke-width="1.5"/></svg><span><strong>The next priority.</strong> A sensible next step, not a long list of warnings left in your lap.</span></li>
+          </ul>
+        </div>
+        <div>
+          <figure class="report-sheet" aria-labelledby="report-caption">
+            <figcaption class="report-caption" id="report-caption"><strong>Example monthly report</strong><span>Illustrative only · Not customer results</span></figcaption>
+            <div class="report-content">
+              <div class="report-masthead">
+                <div><p>FRICTIONLESS / WEBSITE NOTES</p><h3>Small changes.<br>A clearer next step.</h3></div>
+                <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M5 25V7h22M5 16h16m-1 5 6-6-6-6" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="report-entry">
+                <div class="report-entry-heading"><h4>Mobile speed</h4><span class="status">Recheck needed</span></div>
+                <p>Header image resized. Repeat the mobile PageSpeed test before calling the page faster.</p>
+              </div>
+              <div class="report-entry">
+                <div class="report-entry-heading"><h4>Contact path</h4><span class="status checked">Change checked</span></div>
+                <p>The contact link is now beside the service description and usable on a narrow screen.</p>
+              </div>
+              <div class="report-entry">
+                <div class="report-entry-heading"><h4>Inquiries</h4><span class="status missing">Data unavailable</span></div>
+                <p>No verified inquiry tracking is connected. We can’t yet tell whether more people got in touch.</p>
+              </div>
+            </div>
+            <div class="report-next"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.7"/></svg><p><strong>Proposed next step</strong>Trim the quote form to the essentials.</p></div>
+          </figure>
+          <p class="report-context">Real reports use the data available for your site. Missing data stays visible; a click isn’t counted as a customer.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section plan-section" id="plan" aria-labelledby="plan-title">
+      <div class="wrap">
+        <div class="plan-intro">
+          <div class="section-heading"><p class="eyebrow">A small plan. A useful difference.</p><h2 id="plan-title">More than a place<br>to <em class="serif">park your website.</em></h2></div>
+          <p>Keep your site hosted—and keep making it easier for customers to use.</p>
+        </div>
+        <div class="plan">
+          <div class="plan-price">
+            <p class="plan-name">The Frictionless plan</p>
+            <p class="price"><span class="price-amount">$10</span><span class="price-unit">/ month USD</span></p>
+            <p class="plan-fit">For supported small brochure and service-business websites. We’ll check that your site is a fit first.</p>
+            <a class="button" href="mailto:alex@frictionless.fyi?subject=Free%20website%20review&amp;body=Website%3A%20%0AWhat%20I%20would%20like%20to%20improve%3A%20">Review my site <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8"/></svg></a>
+            <p class="plan-note">Start with a free review, not a payment.</p>
           </div>
+          <dl class="plan-inclusions">
+            <div><dt><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m3 10 4 4 10-10" stroke="currentColor" stroke-width="1.5"/></svg>Website hosting</dt><dd>A home for your supported small site, with the hosting arrangement confirmed before you move.</dd></div>
+            <div><dt><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m3 10 4 4 10-10" stroke="currentColor" stroke-width="1.5"/></svg>A monthly metrics &amp; change report</dt><dd>Useful measurements, completed work, and the next priority, explained for a business owner—not a developer.</dd></div>
+            <div><dt><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m3 10 4 4 10-10" stroke="currentColor" stroke-width="1.5"/></svg>Ongoing small improvements</dt><dd>Prioritized, agreed changes to speed, mobile usability, and conversion paths. Practical work, not advice alone.</dd></div>
+          </dl>
         </div>
-        <div class="hero-bottom"><span>Improve the website you already have</span><span>Prioritize practical fixes</span><span>Measure meaningful customer actions</span></div>
-      </div>
-    </section>
-
-    <section class="white" id="what-we-fix">
-      <div class="wrap">
-        <p class="eyebrow">The traffic is only the beginning</p>
-        <h2>Before spending more on visitors,<br>look at what happens next.</h2>
-        <p class="intro">Advertising, search, and referrals bring people to your website. Preventable friction can make it harder for them to become customers. These are possibilities to investigate, not assumptions about your site.</p>
-        <div class="problems">
-          <article><p class="small-label">01 / SPEED</p><h3>Pages that make people wait.</h3><p>Heavy images and unnecessary scripts can delay the information visitors came to find, especially on mobile.</p></article>
-          <article><p class="small-label">02 / CLARITY</p><h3>A next step that's hard to find.</h3><p>Unclear services, buried contact details, and confusing navigation can leave an interested visitor unsure what to do.</p></article>
-          <article><p class="small-label">03 / CONVERSION</p><h3>More effort than necessary.</h3><p>Long forms, awkward booking flows, and small mobile buttons can put obstacles between interest and action.</p></article>
-          <article><p class="small-label">04 / MEASUREMENT</p><h3>Decisions without the full picture.</h3><p>Without useful tracking, it's difficult to know which channels lead to inquiries or whether a change helped.</p></article>
+        <div class="scope">
+          <p><strong>Let’s make sure it fits.</strong> Site eligibility, initial setup or migration scope, and integrations are confirmed before work begins. Any work outside the plan needs a separate agreement.</p>
+          <p><strong>Not an unlimited rebuild service.</strong> Larger redesigns, backend or e-commerce features, domain registration, email, and paid third-party fees are not included in the $10 plan. Any of these needed for your site are discussed and separately agreed first.</p>
         </div>
       </div>
     </section>
 
-    <section id="how-it-works">
+    <section class="section process-section" id="how-it-works" aria-labelledby="process-title">
       <div class="wrap">
-        <p class="eyebrow">A practical process</p>
-        <h2>From “something isn't working”<br>to knowing what to do about it.</h2>
-        <div class="steps">
-          <article><span class="number">01</span><h3>Diagnose.</h3><p>Review performance, key pages, mobile experiences, forms, and the paths from visitor to inquiry.</p></article>
-          <article><span class="number">02</span><h3>Measure.</h3><p>Identify what you can already measure and where tracking for calls, forms, or bookings needs attention.</p></article>
-          <article><span class="number">03</span><h3>Fix.</h3><p>Prioritize changes by business relevance, evidence, effort, and risk. Then implement the agreed scope.</p></article>
-          <article><span class="number">04</span><h3>Improve.</h3><p>Verify the work, review meaningful actions where data permits, and decide what deserves attention next.</p></article>
+        <div class="process-heading">
+          <div class="section-heading"><p class="eyebrow">An easy first step</p><h2 id="process-title">Send a link.<br><em class="serif">Start a conversation.</em></h2></div>
+          <p>No sales maze. No passwords to email. Just your website and what you’d like it to do better.</p>
+        </div>
+        <ol class="steps">
+          <li><span class="step-number" aria-hidden="true">01 / TAKE A LOOK</span><h3>Get a free first review.</h3><p>Email your public website URL. We’ll take an initial look at speed, mobile usability, and the path to getting in touch.</p></li>
+          <li><span class="step-number" aria-hidden="true">02 / MAKE A PLAN</span><h3>Agree what makes sense.</h3><p>Get clear next steps. If the $10 plan fits, we confirm hosting, setup, integrations, and improvement priorities before work starts.</p></li>
+          <li><span class="step-number" aria-hidden="true">03 / KEEP IMPROVING</span><h3>Stay focused on your business.</h3><p>We host your site, work through small agreed improvements, and send your monthly report. You know what’s happening without chasing technical details.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="wrap faq-grid">
+        <div class="section-heading">
+          <p class="eyebrow">Before we say hello</p>
+          <h2 id="faq-title">Good questions.<br><em class="serif">Straight answers.</em></h2>
+          <p>Something else on your mind?<br><a href="mailto:alex@frictionless.fyi">Ask Alex directly.</a></p>
+        </div>
+        <div>
+          <div class="faq-list">
+            <details><summary>Do I need a whole new website?</summary><p>Not necessarily. We start with what you have and look for targeted improvements. If a larger rebuild makes more sense, we’ll explain why. A rebuild isn’t silently included in the monthly plan; its scope and cost would need a separate agreement.</p></details>
+            <details><summary>Will my website fit the $10 plan?</summary><p>The plan is for supported small brochure and service-business sites. Your platform, page needs, and integrations determine whether we can host and maintain it within that scope. We can review a public site before knowing the answer, but we won’t promise a migration until we’ve checked the setup.</p></details>
+            <details><summary>What counts as a small improvement?</summary><p>Think lighter images, a clearer service description, a more usable mobile layout, or a simpler contact path. We prioritize and agree the work based on your site’s needs and the effort involved. New backend systems, e-commerce features, and larger redesigns need separately agreed scope—not an assumption that everything fits into $10.</p></details>
+            <details><summary>What if I don’t have analytics?</summary><p>We can still review loading speed, mobile layouts, and public contact paths. Monthly reports distinguish measured results from checks and missing data. Traffic and inquiry reporting depends on available, verified tracking. Any new analytics or booking integration needs an agreed setup, appropriate access, and privacy and consent considerations.</p></details>
+            <details><summary>Can you guarantee more customers or a perfect score?</summary><p>No. Your offer, audience, traffic, and other factors affect results. We focus on removing obstacles and checking the work. PageSpeed scores can vary; a faster page or a button click does not, by itself, prove more inquiries, revenue, or better rankings.</p></details>
+          </div>
+          <details class="speed-check" id="scan">
+            <summary>Just curious about speed? Try a self-check.</summary>
+            <p>Google PageSpeed Insights checks a public page’s loading and responsiveness. It’s a useful starting point, not a review of your customer journey.</p>
+            <form action="https://pagespeed.web.dev/analysis" method="get" target="_blank" rel="noopener noreferrer">
+              <label for="website">Your public website URL</label>
+              <div class="speed-input">
+                <input id="website" name="url" type="url" placeholder="https://yourwebsite.com" autocomplete="url" inputmode="url" required aria-describedby="scan-description">
+                <button class="button outline" type="submit">Open Google PageSpeed <span aria-hidden="true">↗</span></button>
+              </div>
+              <p class="scan-disclosure" id="scan-description">This opens a new tab and sends Google the URL. It is <strong>not a Frictionless submission</strong>; we don’t receive your request or the results. For your free review, <a href="mailto:alex@frictionless.fyi?subject=Free%20website%20review&amp;body=Website%3A%20">email Alex instead</a>.</p>
+            </form>
+          </details>
         </div>
       </div>
     </section>
 
-    <section class="white">
-      <div class="wrap audit-grid">
-        <div class="audit-intro">
-          <p class="eyebrow">What we actually inspect</p>
-          <h2>A practical audit.<br>Not just a performance score.</h2>
-          <p class="intro">Speed is one part of the story. A useful diagnosis connects technical details to the experience of someone trying to become your customer.</p>
-          <a href="#sample">See an example finding <span aria-hidden="true">↗</span></a>
+    <section class="contact dark" id="contact" aria-labelledby="contact-title">
+      <div class="wrap contact-inner">
+        <div><p class="eyebrow">Less friction. More possibility.</p><h2 id="contact-title">Good work deserves<br><em class="serif">a better way in.</em></h2></div>
+        <div class="contact-copy">
+          <p>Send your website and tell us what matters: more calls, easier quote requests, or a site that finally feels right on a phone. We’ll start with a free first look.</p>
+          <a class="button lime" href="mailto:alex@frictionless.fyi?subject=Free%20website%20review&amp;body=Website%3A%20%0AWhat%20I%20would%20like%20to%20improve%3A%20">Review my site <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8"/></svg></a>
+          <p class="contact-email">Opens your email app. Or write to<br><a href="mailto:alex@frictionless.fyi">alex@frictionless.fyi</a></p>
         </div>
-        <dl class="inspection">
-          <div><dt>Performance</dt><dd>Loading and rendering, images, fonts, layout shifts, JavaScript, and third-party scripts. Find what delays the useful parts of your website.<br><span class="tag">Automated checks + technical review</span></dd></div>
-          <div><dt>User experience</dt><dd>Mobile layouts, navigation, readability, accessibility barriers, and unnecessary steps. Make it easier to find and understand what you offer.<br><span class="tag">Manual review</span></dd></div>
-          <div><dt>Conversion paths</dt><dd>Calls to action, contact forms, booking journeys, trust signals, and unanswered questions. Help interested visitors take a clear next step.<br><span class="tag">Manual review + agreed journey testing</span></dd></div>
-          <div><dt>Measurement</dt><dd>Analytics configuration, conversion events, traffic sources, funnel visibility, and consent. Connect improvements to meaningful actions, not just page views.<br><span class="tag">Authorized account access required</span></dd></div>
-          <div><dt>Technical reliability</dt><dd>Broken links, redirects, page errors, observable failed requests, mobile rendering, and form submissions. Check that important journeys work as intended.<br><span class="tag">Automated checks + manual verification</span></dd></div>
-        </dl>
-      </div>
-    </section>
-
-    <section id="sample">
-      <div class="wrap">
-        <p class="eyebrow">Specific findings. Useful next steps.</p>
-        <h2>Here's what actionable looks like.</h2>
-        <p class="intro">A warning on its own isn't a plan. Each finding should explain the evidence, why it matters, what to change, and how to assess the result.</p>
-        <div class="report">
-          <div class="report-heading"><div><h3>Example Dental Practice</h3><p>Illustrative audit excerpt · hypothetical findings, not measured client results</p></div><span class="demo-badge">FICTIONAL DEMONSTRATION</span></div>
-          <article class="finding">
-            <span>01</span>
-            <div><h4>The hero image delays the main content.</h4><p><strong>Example evidence:</strong> A page inspection could reveal a large, full-resolution image being sent to a small mobile screen.</p><p><strong>Why it matters:</strong> Visitors may wait longer to see treatment information and the appointment action.</p><span class="priority">Priority: high · Effort: small–medium</span></div>
-            <div><p><strong>Recommended fix:</strong> Resize and compress the image, use responsive formats, and prioritize the visible hero rather than lazy-loading it.</p><p><strong>How to measure:</strong> Compare like-for-like mobile lab tests, then review real-user loading data and appointment actions if available.</p></div>
-          </article>
-          <article class="finding">
-            <span>02</span>
-            <div><h4>The mobile call button is hard to find.</h4><p><strong>Example evidence:</strong> A mobile walkthrough could show the phone link only at the bottom of a long page.</p><p><strong>Why it matters:</strong> A visitor ready to ask about treatment has to search for a way to call.</p><span class="priority">Priority: high · Effort: small</span></div>
-            <div><p><strong>Recommended fix:</strong> Put a clearly labeled, accessible call action near relevant treatment information without obstructing the page.</p><p><strong>How to measure:</strong> Track call-link taps and, with appropriate consent and tools, distinguish taps from connected, qualified calls.</p></div>
-          </article>
-          <article class="finding">
-            <span>03</span>
-            <div><h4>The inquiry form asks too much, too soon.</h4><p><strong>Example evidence:</strong> A form review could identify mandatory fields that aren't needed to arrange an initial conversation.</p><p><strong>Why it matters:</strong> Extra effort can make an otherwise simple appointment request feel difficult.</p><span class="priority">Priority: medium · Effort: medium</span></div>
-            <div><p><strong>Recommended fix:</strong> Agree the minimum useful fields with the practice. Keep sensitive medical information out of a general inquiry form.</p><p><strong>How to measure:</strong> Compare form starts, confirmed submissions, and lead quality—not just button clicks.</p></div>
-          </article>
-          <article class="finding">
-            <span>04</span>
-            <div><h4>Confirmed bookings need a reliable event.</h4><p><strong>Example evidence:</strong> An authorized analytics test could find that a successful test booking does not produce the agreed event.</p><p><strong>Why it matters:</strong> The practice cannot reliably connect website activity to appointment requests.</p><span class="priority">Priority: high · Effort: medium</span></div>
-            <div><p><strong>Recommended fix:</strong> Record a consent-aware event only after booking confirmation, deduplicate it, and exclude patient details.</p><p><strong>How to measure:</strong> Verify test events against actual booking confirmations. This requires authorized access; a public scan cannot establish it.</p></div>
-          </article>
-          <article class="finding">
-            <span>05</span>
-            <div><h4>A third-party widget interrupts interaction.</h4><p><strong>Example evidence:</strong> A repeatable lab trace could identify long main-thread tasks associated with a nonessential widget.</p><p><strong>Why it matters:</strong> The page may respond slowly while someone is trying to navigate or book.</p><span class="priority">Priority: medium · Effort: medium</span></div>
-            <div><p><strong>Recommended fix:</strong> Assess the widget's business value. Remove, defer, or load it on demand, then check that key functions still work.</p><p><strong>How to measure:</strong> Repeat interaction tests and review real-user responsiveness where available. Faster interaction alone doesn't prove more bookings.</p></div>
-          </article>
-          <p class="report-note">All five examples are fictional. Priorities and effort are illustrative, not a diagnosis or quote for your website. We distinguish observed facts, potential issues, and checks that need authorized access.</p>
-        </div>
-        <div class="actions"><a class="button" href="mailto:alex@frictionless.fyi?subject=Review%20my%20website&body=Website%3A%20">Find issues on my website <span aria-hidden="true">↗</span></a></div>
-      </div>
-    </section>
-
-    <section class="white">
-      <div class="wrap">
-        <p class="eyebrow">Measure what matters</p>
-        <h2>Less guesswork.<br>Better-informed improvements.</h2>
-        <div class="funnel" aria-label="Illustrative customer journey"><span>Website visitors</span><b aria-hidden="true">→</b><span>Engaged visitors</span><b aria-hidden="true">→</b><span>Contact attempts</span><b aria-hidden="true">→</b><span>Qualified leads</span><b aria-hidden="true">→</b><span>Customers</span></div>
-        <p class="intro" style="margin-bottom:0">Know where visitors arrive, where they lose interest, and which actions lead to inquiries. With authorized analytics access, we help you interpret engagement and bounce rates alongside confirmed inquiries and bookings—not in isolation. If tracking is missing, we can set up consent-aware measurement. A faster page is useful; whether it produces more qualified inquiries needs evidence.</p>
-      </div>
-    </section>
-
-    <section id="businesses">
-      <div class="wrap">
-        <p class="eyebrow">Built for service businesses</p>
-        <h2>For businesses where every lead matters.</h2>
-        <p class="intro">Different businesses. Different customer questions. The same need for a website that makes the next step clear. These are examples of what we can investigate, not claims of past client work.</p>
-        <div class="industries">
-          <article><h3>Dental & implant practices</h3><p>Make treatment information easier to find, improve mobile appointment calls, and measure appointment requests.</p></article>
-          <article><h3>Law firms</h3><p>Clarify practice-area pages, simplify consultation requests, and make contact routes easier to use.</p></article>
-          <article><h3>Home services</h3><p>Make service areas and urgent call options clear, improve quote forms, and connect inquiries to their source.</p></article>
-          <article><h3>Med spas & elective healthcare</h3><p>Help visitors understand treatments and consultation options while keeping sensitive data out of general forms.</p></article>
-          <article><h3>Professional services</h3><p>Explain the offer clearly, answer qualification questions, and remove friction from starting a conversation.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="white" id="services">
-      <div class="wrap">
-        <p class="eyebrow">Start small. Make the next step count.</p>
-        <h2>A clear entry point.<br>A practical path to implementation.</h2>
-        <div class="offers">
-          <article class="offer"><p class="small-label">01 / START HERE</p><h3>Initial website review</h3><p class="price">Free</p><p>A preliminary look at your public website.</p><ul><li>Initial automated checks and a review of obvious issues</li><li>A concise summary of potential opportunities</li><li>A clear recommendation for what to do next</li></ul><a class="button" href="mailto:alex@frictionless.fyi?subject=Free%20website%20review&body=Website%3A%20">Request a free review</a></article>
-          <article class="offer"><p class="small-label">02 / GO DEEPER</p><h3>Comprehensive audit</h3><p class="price">Request a quote</p><p>A deeper diagnosis, scoped to your business.</p><ul><li>Manual performance, UX, and conversion review</li><li>Prioritized findings, evidence, and recommended fixes</li><li>Measurement gaps and tracking recommendations</li></ul><a class="button secondary" href="mailto:alex@frictionless.fyi?subject=Comprehensive%20website%20audit&body=Website%3A%20%0APrimary%20concern%3A%20">Discuss an audit</a></article>
-          <article class="offer"><p class="small-label">03 / MAKE IT HAPPEN</p><h3>Implementation & optimization</h3><p class="price">Scoped to your needs</p><p>Get help turning recommendations into working fixes.</p><ul><li>Implementation of agreed improvements</li><li>Analytics and conversion tracking setup</li><li>Testing, verification, and follow-up measurement</li></ul><a class="button secondary" href="mailto:alex@frictionless.fyi?subject=Website%20implementation%20review&body=Website%3A%20%0AWhat%20I%20would%20like%20to%20improve%3A%20">Discuss my website</a></article>
-        </div>
-        <p class="fine" style="margin-top:1.5rem">Paid work is separately agreed and quoted. Implementation is not automatically included in an audit. No invented discounts, fixed results, or long-term commitment to start.</p>
-      </div>
-    </section>
-
-    <section>
-      <div class="wrap why">
-        <div><p class="eyebrow">Useful beyond the inbox</p><h2>You don't need another report that sits unread.</h2><p class="intro">You need to understand what deserves attention and have a realistic way to act on it. That's the service we're building around.</p></div>
-        <ul><li>Prioritized recommendations, not an endless list of warnings</li><li>Business relevance alongside technical severity</li><li>Practical implementation, not advice alone</li><li>Measurement around calls, inquiries, and bookings</li><li>Targeted improvements before an unnecessary redesign</li><li>Clear explanations for nontechnical business owners</li></ul>
-      </div>
-    </section>
-
-    <section class="white" id="faq">
-      <div class="wrap faq">
-        <p class="eyebrow">Good questions</p>
-        <h2>A little clarity before we start.</h2>
-        <details><summary>What exactly does Frictionless do?</summary><p>We diagnose website performance, usability, conversion, and measurement problems; prioritize useful fixes; and offer implementation and follow-up measurement. The aim is to get more value from the traffic you already have.</p></details>
-        <details><summary>How does the free initial review work?</summary><p>Email your public website URL and what you'd like to improve. We'll review the request and agree the next step. This is an initial assessment, not a full audit. For an immediate automated performance check, use the Google PageSpeed Insights tool below; it does not send us a request.</p></details>
-        <details><summary>Will you tell me what's wrong with my website?</summary><p>We'll explain what we can actually observe, what looks like a potential issue, and what needs deeper review or authorized access. We won't pretend a public scan can explain actual visitor behavior or establish whether your analytics is working.</p></details>
-        <details><summary>Can you fix the problems, or only provide a report?</summary><p>Implementation is available under a separate agreed scope. We'll discuss access, platform constraints, cost, risk, and verification before making changes.</p></details>
-        <details><summary>Do I need to rebuild my website?</summary><p>Not necessarily. We look for targeted improvements to your existing site first. If a larger rebuild appears justified, we'll explain the evidence and tradeoffs rather than assume one is required.</p></details>
-        <details><summary>Can you work with WordPress, Webflow, Shopify, and custom sites?</summary><p>Public-page review can apply to all of these. What we can implement depends on your platform, theme, hosting, permissions, and third-party tools. We'll confirm feasibility before agreeing the work.</p></details>
-        <details><summary>Can you help with Google Analytics and conversion tracking?</summary><p>Yes. We can review your existing setup or help configure Google Analytics 4 if tracking is missing, using an owner-approved property and consent controls. We help you understand engagement, bounce rates, and meaningful actions such as confirmed inquiries and bookings. Setup and verification require appropriate account access; a public scan alone cannot show actual visitor behavior.</p></details>
-        <details><summary>Will you need access to my website or analytics?</summary><p>Not for the initial public-page review. Deeper measurement work and implementation may require authorized access. We'll ask only for necessary permissions through named, revocable invitations—not passwords sent by email.</p></details>
-        <details><summary>How long does an audit take?</summary><p>Timing depends on the number of pages, journeys, access requirements, and agreed depth. We'll confirm scope and a realistic timeline before starting paid work. The free review doesn't reserve a delivery date.</p></details>
-        <details><summary>How much does it cost?</summary><p>The initial website review is free. Comprehensive audits, implementation, and ongoing optimization are quoted separately after understanding your needs. No paid work starts without an agreed scope and price.</p></details>
-        <details><summary>Can you guarantee more leads or sales?</summary><p>No. Outcomes depend on your traffic, audience, offer, measurement, and implementation. We promise a clear process, evidence-led recommendations, and agreed work focused on measurable customer actions—not a predetermined revenue or conversion increase.</p></details>
-        <details><summary>How do you handle access and business data?</summary><p>Use least-privilege, revocable access for agreed work. Don't email passwords, medical details, legal case information, or other sensitive customer data. We discuss any required data access and handling before the engagement begins.</p></details>
-      </div>
-    </section>
-
-    <section id="scan">
-      <div class="wrap">
-        <div class="scan-box">
-          <div><p class="eyebrow">Want an immediate starting point?</p><h2>Run a free performance check.</h2><p>Google PageSpeed Insights can show loading and responsiveness signals for a public page. It's a useful first check—not a UX audit, an analysis of your leads, or the whole picture.</p></div>
-          <form action="https://pagespeed.web.dev/analysis" method="get" target="_blank" rel="noopener noreferrer">
-            <label for="website">Enter your website URL</label>
-            <input id="website" name="url" type="url" placeholder="https://yourwebsite.com" autocomplete="url" inputmode="url" required aria-describedby="scan-description">
-            <button class="button" type="submit">Scan my website <span aria-hidden="true">↗</span></button>
-            <p class="fine" id="scan-description">Opens Google PageSpeed Insights in a new tab and sends Google the URL. This does not send Frictionless a request. For a broader review, <a href="mailto:alex@frictionless.fyi?subject=Free%20website%20review">email us your website</a>.</p>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <section class="final" id="contact">
-      <div class="wrap">
-        <p class="eyebrow">Less friction. More customers.</p>
-        <h2>Find out what's getting<br>in the way.</h2>
-        <p>Start with your website URL and what you'd like to improve. Let's identify the next sensible step toward a faster, clearer, more measurable customer journey.</p>
-        <div class="actions"><a class="button" href="mailto:alex@frictionless.fyi?subject=Free%20website%20review&body=Website%3A%20%0APrimary%20goal%3A%20">Get my free website review <span aria-hidden="true">↗</span></a></div>
-        <a class="email" href="mailto:alex@frictionless.fyi">alex@frictionless.fyi</a>
       </div>
     </section>
   </main>
   <footer>
     <div class="wrap">
       <div class="footer-top">
-        <div><a class="wordmark" href="#" aria-label="Frictionless.fyi home"><span>frictionless<span style="color:var(--blue)">.fyi</span></span></a><p>Know the friction. Fix what matters.</p></div>
-        <nav class="footer-links" aria-label="Footer navigation"><a href="#how-it-works">Our process</a><a href="#businesses">Who we help</a><a href="#services">Services</a><a href="mailto:alex@frictionless.fyi">Contact</a><a href="#privacy">Privacy</a><a href="#terms">Terms</a></nav>
+        <div><a class="wordmark" href="#top" aria-label="Frictionless home">frictionless.</a><p class="footer-tagline">A clearer path from visitor to customer.</p></div>
+        <nav class="footer-links" aria-label="Footer navigation"><a href="#plan">The $10 plan</a><a href="#how-it-works">How it works</a><a href="mailto:alex@frictionless.fyi">Contact</a><a href="#privacy">Privacy</a><a href="#terms">Terms</a></nav>
       </div>
-      <details class="legal" id="privacy"><summary>Privacy</summary><p>This static site uses no analytics, advertising trackers, cookies, or contact-form database. GitHub Pages serves the site and may process technical connection information under <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a>. Email links open your own email application; only send information you want to share for your inquiry. Email correspondence is used to respond and discuss the requested service, not to subscribe you to marketing. Contact <a href="mailto:alex@frictionless.fyi">alex@frictionless.fyi</a> for questions or deletion requests. Don't send sensitive customer data or credentials. The optional PageSpeed form sends your website URL directly to Google, subject to <a href="https://policies.google.com/privacy">Google's privacy policy</a>; Frictionless does not receive or store its results.</p></details>
-      <details class="legal" id="terms"><summary>Service terms</summary><p>This website provides general information and a way to request a preliminary review. A free review is limited in scope and is not a security audit, compliance certification, or guarantee of results. The linked Google tool is an independent third-party service. Submit only public sites you own or are authorized to assess. Paid audits and implementation require a separately agreed written scope, price, timeline, and access arrangements. No leads, sales, rankings, or performance scores are guaranteed. Business and legal terms appropriate to the engagement must be confirmed before paid work starts. Questions: <a href="mailto:alex@frictionless.fyi">alex@frictionless.fyi</a>.</p></details>
-      <p class="copyright">© 2026 Frictionless.fyi. Less friction. More customers.</p>
+      <details class="legal" id="privacy"><summary>Privacy</summary><p>This static site uses no analytics, advertising trackers, cookies, or contact-form database. GitHub Pages serves the site and may process technical connection information under <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub’s privacy statement</a>. Email links open your email application. Correspondence is used to respond and discuss the requested service, not to subscribe you to marketing. Contact <a href="mailto:alex@frictionless.fyi">alex@frictionless.fyi</a> for privacy questions or deletion requests. Don’t send passwords, credentials, or sensitive customer data. The optional PageSpeed form sends your URL directly to Google, subject to <a href="https://policies.google.com/privacy">Google’s privacy policy</a>; Frictionless does not receive or store the results.</p></details>
+      <details class="legal" id="terms"><summary>Service terms</summary><p>The free review is a preliminary assessment of a public website, not a full audit, security audit, or compliance certification. Submit only public sites you own or are authorized to assess. Google PageSpeed Insights is an independent third-party service.</p><p>The $10/month USD plan is for supported small brochure and service-business sites and includes hosting, a monthly plain-English metrics and change report, and ongoing prioritized small, agreed speed, mobile, and conversion improvements. Site eligibility, initial setup or migration, integrations, scope, price, timing, access arrangements, and applicable service terms are confirmed in writing before paid work begins. Larger rebuilds, backend or e-commerce features, domain registration, email, and paid third-party fees are not included; any such needs require a separate agreement. No leads, revenue, sales, rankings, or performance scores are guaranteed. Questions: <a href="mailto:alex@frictionless.fyi">alex@frictionless.fyi</a>.</p></details>
+      <p class="copyright">© 2026 Frictionless. Built to keep things simple.</p>
     </div>
   </footer>
+  <script>
+    const menu = document.getElementById('mobile-menu');
+    menu.addEventListener('click', (event) => {
+      if (event.target.closest('a')) menu.open = false;
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && menu.open) {
+        menu.open = false;
+        menu.querySelector('summary').focus();
+      }
+    });
+    function revealLinkedDetails() {
+      const target = document.getElementById(location.hash.slice(1));
+      if (target instanceof HTMLDetailsElement) target.open = true;
+    }
+    window.addEventListener('hashchange', revealLinkedDetails);
+    document.querySelectorAll('a[href="#privacy"], a[href="#terms"]').forEach((link) => {
+      link.addEventListener('click', () => {
+        document.getElementById(link.hash.slice(1)).open = true;
+      });
+    });
+    revealLinkedDetails();
+  </script>
 </body>
 </html>

@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "customer_id": "example-garden",
+  "customer_name": "Example Garden Services (fictional demonstration)",
+  "source_dir": "../examples/site",
+  "source_paths": ["index.html"],
+  "authorization": {
+    "owner_approved": false,
+    "approved_by": "REPLACE with the authorizing owner/operator",
+    "reference": "REPLACE with a private authorization or agreement reference",
+    "scope": "Demonstration only: one local contact-navigation fix; no deployment or sending."
+  },
+  "agreed_fix": {
+    "description": "Replace the inert Get a quote button with an accessible link to the existing #contact section. Retain its label and button class. Do not change other content or styles.",
+    "allowed_paths": ["index.html"],
+    "acceptance": "Exactly one Get a quote link points to #contact; that section still exists; the business title and viewport declaration remain intact."
+  },
+  "llm": {
+    "argv": [
+      "copilot",
+      "--no-custom-instructions",
+      "--no-ask-user",
+      "--no-auto-update",
+      "--disallow-temp-dir",
+      "--disable-builtin-mcps",
+      "--deny-tool=shell",
+      "--deny-tool=url",
+      "--allow-tool=write",
+      "--usage-output-file=.pipeline-output/usage.json",
+      "-p"
+    ],
+    "prompt_mode": "argument",
+    "timeout_seconds": 180,
+    "max_calls_per_month": 2
+  },
+  "verification": [
+    {
+      "name": "agreed-contact-navigation",
+      "purpose": "Parse the actual edited HTML and assert the agreed contact link, destination, retained title, and mobile viewport. Does not verify appearance or conversion uplift.",
+      "argv": [
+        "python3",
+        "-c",
+        "from html.parser import HTMLParser\nfrom pathlib import Path\nclass Check(HTMLParser):\n def __init__(self):\n  super().__init__(); self.links=[]; self.ids=[]; self.viewport=False\n def handle_starttag(self, tag, attrs):\n  a=dict(attrs)\n  if tag=='a': self.links.append(a.get('href'))\n  if 'id' in a: self.ids.append(a['id'])\n  if tag=='meta' and a.get('name')=='viewport': self.viewport='width=device-width' in a.get('content','')\ns=Path('index.html').read_text(); c=Check(); c.feed(s)\nassert c.links.count('#contact')==1, 'Expected one contact link'\nassert c.ids.count('contact')==1, 'Contact destination missing or duplicated'\nassert '>Get a quote</a>' in s, 'CTA label or link missing'\nassert '<title>Example Garden Services</title>' in s, 'Business title changed'\nassert c.viewport, 'Mobile viewport missing'\nprint('Agreed contact-navigation assertions passed; visual review still required')"
+      ],
+      "timeout_seconds": 15
+    }
+  ]
+}

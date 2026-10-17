@@ -1,3 +1,9 @@
 .env
 .env.local
 .env.*.local
+pipeline/.state/
+pipeline/.customers/
+pipeline/.sources/
+pipeline/.test-runs/
+pipeline/__pycache__/
+pipeline/tests/__pycache__/

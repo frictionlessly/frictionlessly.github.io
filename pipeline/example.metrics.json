@@ -1,0 +1,12 @@
+{
+  "period": "2026-10",
+  "source": "Fictional schema template only: replace with an authorized analytics export description",
+  "timezone": "UTC",
+  "sessions": null,
+  "converted_sessions": null,
+  "enquiries": null,
+  "conversion_event": null,
+  "cohort": null,
+  "hosting_note": null,
+  "note": "No production measurements supplied. Keep unavailable values null."
+}
