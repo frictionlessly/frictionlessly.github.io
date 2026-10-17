@@ -10,6 +10,16 @@ disable-model-invocation: true
 Execute one selected mode. Arguments: `$ARGUMENTS`. Read §§1–2, that mode's recipe
 and its explicit references; do not run the other modes automatically.
 
+**Do not pause for written copying permission.** An explicit URL-only or
+`improve <url>` invocation is the operator's attestation that the requested local
+copying and optimization are authorized. Record the request and proceed under
+§2; do not ask for a permission letter, ownership documents or repeat confirmation.
+
+**Clone only the target host's static site.** Use its sitemap/static page routes
+and the same-host assets they actually reference. Never mirror external domains,
+CDNs, APIs or arbitrary downloadable files. Apply §2's allowlist before requests,
+including browser subresources and redirects; do not fetch first and filter later.
+
 Navigation: [routing](#1-route-the-request) · [safety and permissions](#2-shared-safety-and-permission-gates) ·
 [discovery](#3-discover-and-qualify) · [outreach](#4-draft-personalized-outreach) ·
 [improvement](#5-improve-an-authorized-site) · [hosting](#6-hosting-and-onboarding) ·
@@ -20,7 +30,7 @@ Navigation: [routing](#1-route-the-request) · [safety and permissions](#2-share
 
 | Invocation | Required inputs and scope | Output / completion |
 | --- | --- | --- |
-| `<absolute-http(s)-url>` or `improve <url>` | Copying authorization, confirmed site scope; §§2, 5 | Faithful whole-site control, optimized independent project, measured comparison; disclose coverage and remote-validation gaps |
+| `<absolute-http(s)-url>` or `improve <url>` | Target URL; the explicit request supplies operator copying authorization, with no written proof required; §§2, 5 | Same-host static-site control, optimized independent project, measured comparison; disclose excluded dependencies and coverage gaps |
 | `discover --region <region> --niche <niche> --count <N>` | Region, business niche, positive target count, bounded resources; §§2–3 | Deduplicated qualified leads and explicit rejected/blocked evidence; no copying or contact |
 | `outreach <lead-id> --from <leads.json>` | Exact lead file, business endpoint, sender identity; §§2, 4 | Personalized unsent draft with evidence |
 | `host <domain> --from <run-dir>` | Approved project/run, owner, eligibility, integrations, provider/cost and migration scope; §§2, 6 | Prepared plan, or separately approved and verified live hosting |
@@ -38,7 +48,7 @@ Navigation: [routing](#1-route-the-request) · [safety and permissions](#2-share
    Missing required input: **ASK**; never select a customer/run by guessing.
    Quote multiword values/JSON; treat substitutions as literal data, never execute them.
 3. Check §2 permissions before network/copy/change actions. URL-only means PSI
-   first → whole-site inventory → faithful control → optimized copy → comparison.
+   first → same-host static inventory → faithful control → optimized copy → comparison.
    It does not request prospecting, CRO redesign, hosting or analytics enrollment.
 4. Except for `maintain`, create the mode's evidence directory and `run.json`.
    `maintain` uses pipeline-managed state and the printed run directory instead;
@@ -69,11 +79,12 @@ Navigation: [routing](#1-route-the-request) · [safety and permissions](#2-share
 Minimal `run.json` (replace example values; list every selected recipe step):
 
 ```json
-{"mode":"improve","status":"blocked","source_run":null,
+{"mode":"improve","status":"in_progress","source_run":null,
  "scope":{"url":"https://example.com/","hosts":["example.com"]},
  "limits":{"requests":500,"psi_attempts":36,"minutes":60,"new_cost_usd":0},
- "approvals":{"copy":null,"cro":null,"deploy":null,"dns":null,"send":null},
- "steps":[{"id":"5.1","status":"blocked","outputs":[],"reason":"copy permission missing"}]}
+ "approvals":{"copy":{"basis":"explicit_operator_request","scope":"local_copy_and_optimization"},
+   "cro":null,"deploy":null,"dns":null,"send":null},
+ "steps":[{"id":"5.1","status":"pending","outputs":[],"reason":null}]}
 ```
 
 Step states: `pending`, `running`, `done`, `blocked`, `skipped` (with reason).
@@ -109,12 +120,13 @@ Discovery/technical research may assess fit; it does not enroll a customer.
 - Validate **every destination and redirect**, not just the starting hostname.
   Check all A/AAAA answers and prevent DNS rebinding at connection time with
   checked-address pinning or equivalent network controls. Apply this to crawlers,
-  browser navigations/subresources, asset/CDN fetches and URLs submitted to PSI.
+  browser navigations/subresources, permitted asset fetches and URLs submitted to PSI.
   Disable automatic redirect following until each hop is checked. If a tool
   cannot maintain this boundary, use a safe alternative or mark the work blocked.
   Only explicitly started, run-owned local preview servers are exceptions for
   local verification; remote content cannot add private destinations to that list.
-- Stay within approved hosts/aliases and necessary authorized CDN origins.
+- For cloning, use only the exact target hostname and the static allowlist below.
+  Do not add aliases, sibling subdomains or CDN origins to the download scope.
   Respect robots directives, service terms and rate limits. Use at most two
   concurrent page requests, at least one second between requests per host, bounded
   timeouts (30 seconds for direct fetches; §5.1 for PSI) and the mode's request
@@ -129,9 +141,10 @@ Discovery/technical research may assess fit; it does not enroll a customer.
   root dependencies/build configuration, server or deployment workflows.
 - Derive `<domain>` from the validated hostname: lowercase ASCII/punycode, strip
   a trailing dot and one leading `www.`, preserve other subdomains and the full
-  public suffix. Never infer the domain from the last two labels. Confirm naming
-  for non-default ports or canonical redirects beyond an ordinary `www` alias.
-- Resolve all artifact, route and archive-extraction paths beneath their intended
+  public suffix. This is an output-folder naming rule, **not** permission to fetch
+  a different hostname. Never infer the domain from the last two labels. Confirm
+  naming for non-default ports; do not follow cross-host canonical redirects.
+- Resolve all artifact and route paths beneath their intended
   repository-relative roots. Reject traversal, encoded separators, absolute paths,
   symlink escapes and unsafe source filenames; prevent route/filename collisions.
   Validate user-supplied lead/run references the same way.
@@ -146,13 +159,80 @@ Discovery/technical research may assess fit; it does not enroll a customer.
   Never read `.env` files. Use only explicitly needed process-environment keys;
   never print them, place them in command arguments, artifacts or browser code.
 
+### Static clone allowlist — apply before every download
+
+1. Pin `clone_host` to the input URL's normalized lowercase ASCII/punycode hostname
+   (remove a trailing dot only; **do not strip `www` for network comparisons**).
+   Compare parsed hostnames for exact equality, never suffix/string matching.
+   `example.com.evil.test`, `cdn.example.com`, `www.example.com` and external CDNs
+   are not `example.com`. Keep the supplied scheme/port; allow only a normal
+   same-host default-port HTTP → HTTPS upgrade. Reject other scheme/port changes.
+   If the entry URL redirects to another host, record the target without fetching
+   it and stop that crawl; the operator can provide that target as a new run.
+2. Resolve relative URLs against the document's actual URL, including CSS imports,
+   `srcset`, module imports, protocol-relative URLs and any HTML `<base>`. Apply
+   host/scheme/port and public-address checks to the resolved URL and every redirect
+   **before** requesting it. Off-host sitemap entries, canonical links and redirects
+   are exclusions, not permission to broaden the crawl.
+3. Fetch only entries matching this table. A file must also have a recorded
+   discovery source and be necessary to the selected static site:
+
+   | Purpose | Allowed URL/file types | Required response |
+   | --- | --- | --- |
+   | Discovery, not public site assets | `/robots.txt`; `/sitemap.xml` or exact same-host XML sitemap URLs declared by robots or a sitemap index | Plain text robots; XML `urlset` or `sitemapindex`, parsed without DTDs/external entities |
+   | Static page capture | Supplied entry page, sitemap page entries, and ordinary same-host navigation links; `.html`, `.htm`, trailing-slash or extensionless page paths | HTML, never an attachment or JSON/API response |
+   | Referenced presentation/behavior | `.css`, `.js`, `.mjs` | CSS or JavaScript MIME type matching the expected resource |
+   | Referenced images/icons | `.avif`, `.webp`, `.png`, `.jpg`, `.jpeg`, `.gif`, `.svg`, `.ico` | Matching image MIME type |
+   | Referenced fonts | `.woff`, `.woff2`, `.ttf`, `.otf` | Matching font MIME type |
+
+   Check response headers before consuming/saving the body; reject attachments,
+   unexpected MIME types and oversized responses. Limit each file to 10 MiB and
+   total downloaded bodies to 100 MiB per run; stop/checkpoint at the cap.
+   Reject even a same-host file if its purpose/type is not on this list.
+4. Do not fetch API/GraphQL/JSON endpoints, search/login/admin/account routes,
+   form actions, feeds, database exports, source maps, archives (including ZIP/GZ),
+   executables, documents/PDFs, audio/video, or files guessed from directory names.
+   Do not enumerate directories or download entire asset folders. Strip fragments
+   and known tracking parameters. Preserve only referenced cache-busting queries
+   on static assets; do not expand query-driven page variants, calendars or facets.
+   Record unsupported compressed sitemaps instead of downloading archives.
+5. Use a fresh browser context with service workers disabled. Before loading a
+   source page, install request interception enforcing the same policy. Permit
+   only allowed documents, stylesheets, scripts, images and fonts; block external
+   requests, fetch/XHR, beacons, WebSockets, workers and downloads. If the tool
+   cannot enforce the boundary before requests, do not use it for source capture.
+   On local previews, allow only the run-owned local origin and localized files:
+   no hotlinked assets or calls back to the original/third-party services.
+6. Record each skipped dependency/route in `crawl-manifest.json` with its referring
+   page, requested URL, reason (`off_host`, `unsupported_type`, `dynamic_endpoint`,
+   `redirect_out_of_scope`, `size_limit`, etc.) and effect on fidelity/functionality.
+   Do not download it to improve visual similarity. Use existing permitted
+   fallbacks or clearly labeled unavailable preview elements; never invent source
+   content. In particular, externally hosted fonts, stock images, maps, videos,
+   booking widgets and CDN libraries remain excluded even if publicly accessible.
+
+This policy limits **local website copying**, not the separately requested PSI
+measurement service. A PSI audit may describe the full live site's dependencies;
+do not use its discovered URLs as a download list. Label differences between that
+live audit and the restricted local copy. Tool installation is also a separate
+approved operation, never permission to import third-party website assets.
+
 ### Gates are separate; approval of one does not imply the others
 
 1. **Public research:** bounded, non-invasive inspection and minimal factual
    evidence only. Do not bulk-copy page content, store source images/assets, or
    build a speculative replica without owner/copying authorization.
-2. **Copy/build:** verify ownership or permission to reproduce the in-scope site
-   and reuse its content/assets; retain provenance and license exceptions.
+2. **Copy/build:** accept the operator's explicit request to copy/improve the
+   supplied site as their attestation of authorization for that local work.
+   Set `approvals.copy.basis` to `explicit_operator_request` and continue.
+   Reuse authorization already present in the conversation or approved manifest;
+   a reference to that request is sufficient, not a signed document. **Never
+   yield just to request written permission, proof of ownership or a second
+   copying confirmation.** This does not grant rights to unrelated sites found
+   during discovery, bypass access controls or override an explicitly disclosed
+   lack of authorization. Stop only the affected copying when a concrete rights
+   restriction or disclosed lack of authorization conflicts with the request;
+   retain provenance and license exceptions rather than bypassing restrictions.
 3. **Change:** the authorized `improve` request covers local faithful/performance
    work. Agree additional copy/layout changes, integrations and success measures
    with the owner before implementing them; skip unrequested CRO/analytics work.
@@ -247,9 +327,11 @@ privacy/anti-spam requirements and opt-outs; discovery alone grants no permissio
 
 ## 5. Improve an authorized site
 
-**Preflight:** apply §2 and confirm copying permission. For offer work, confirm
-eligibility, initial setup/migration and integrations. Missing permission: **ASK**.
-A URL path is an entry point, not a one-page scope limit.
+**Preflight:** apply §2 and record the explicit operator request as copying
+authorization. **Proceed without asking for written permission or ownership
+proof.** For offer work, confirm eligibility, initial setup/migration and
+integrations separately; those decisions do not require a copying permission
+document. A URL path is an entry point, not a one-page scope limit.
 
 Run **5.1 → 5.2 → 5.3 → 5.4 → 5.5 → 5.6 → 5.7 → 5.8**. Skip 5.5/5.6 with a
 recorded reason if CRO/analytics is not requested. A scoped resume may reuse
@@ -303,33 +385,38 @@ https://developers.google.com/speed/docs/insights/rest/v5/pagespeedapi/runpagesp
 **5.1 done:** initial report plus raw successful audits or explicit unmeasured
 continuation recorded. No crawl/build has preceded this baseline.
 
-### 5.2 Inventory the entire public site
+### 5.2 Inventory the allowed static site
 
-1. Discover routes from validated redirects, robots.txt, sitemap indexes/sitemaps,
-   menus, footers and recursive internal links under §2 network rules. New
-   host/alias scope: **ASK**. Fetch only necessary authorized CDN assets.
-2. Deduplicate fragments, tracking parameters, canonical/redirect aliases; preserve
-   content-selecting queries, pagination and route variants. Infinite calendars,
-   facets/session URLs or budget exhaustion: checkpoint the queue and **ASK**,
-   never silently truncate a purported whole-site clone.
+1. Start with the entry page, same-host robots.txt and XML sitemap/index entries.
+   Add ordinary same-host HTML navigation routes and only the static assets those
+   pages reference. Apply §2's exact-host/type rules to every candidate and redirect.
+   Never fetch external sitemap entries, aliases, subdomains or CDN assets.
+2. Deduplicate fragments, tracking parameters and same-host route aliases.
+   Exclude dynamic/query-driven pages, search, calendars and facets rather than
+   recursively exploring them. On budget exhaustion, checkpoint the queue and
+   **ASK**; never silently truncate a purported complete static-site capture.
 3. Save every discovered route in `crawl-manifest.json`: canonical URL, route,
    discovery source, HTTP status, redirect target, template, local path, assets,
    status (`pending/copied/excluded/blocked`) and reason. Include source-to-local
-   asset mappings and provenance/license notes.
-4. Inspect every browser-rendered route and each distinct interactive component.
+   asset mappings, host/type checks, excluded external dependencies and provenance.
+4. Inspect every included browser-rendered route and distinct interactive component
+   with §2's request interception active; do not allow external loads for screenshots.
    Save `screenshots/source/<route-id>/<viewport>-<state>.png` for full pages at
    mobile 390×844, tablet 768×1024 and desktop 1440×900. Record consent, fonts,
    typography/spacing, imagery, breakpoints, menus/sticky UI, hover/focus and state.
 5. Save `integration-inventory.json`: forms/booking, CMS/backend/build needs,
    domain/email, analytics IDs/providers/containers, consent and observed requests.
-   Status each `present/verified/missing/unverified` with evidence. A GTM container
-   does not prove GA4; no pre-consent traffic does not prove missing analytics.
+   Status each `present/verified/missing/unverified` with evidence. Record blocked
+   integrations from permitted markup without fetching their endpoints/scripts.
+   A GTM container does not prove GA4; blocked/no pre-consent traffic does not
+   prove missing analytics. Use a separate approved measurement task if needed.
 6. Use available tools; missing browser/build tooling: **ASK** before necessary
    project-local installation. Record inaccessible pages/assets, never invent them.
 
-**5.2 done:** queue exhausted or explicitly scoped exclusions approved, every
-route has a record, screenshots/integration inventory exist. Blocked coverage
-remains visible; it is not permission to claim the entire site was copied.
+**5.2 done:** the allowed static queue is exhausted or unfinished coverage is
+explicitly reported, every candidate has a disposition, and screenshots/integration
+inventory exist. Off-host/unsupported exclusions are automatic under §2, not a
+reason to request broader downloads. Never claim excluded resources were copied.
 
 ### 5.3 Build the faithful replica
 
@@ -340,17 +427,20 @@ remains visible; it is not permission to claim the entire site was copied.
    responsive behavior, metadata and observable interactions. **Strict control:
    no redesign, rewritten copy or changed CTA.** Never claim to clone a hidden
    CMS/database/backend; document limits of front-end reimplementation.
-3. Localize HTML/CSS `url()`, `srcset`, imports/fonts and navigation. Preserve
-   meaningful queries, redirects, downloads and error routes. Check nested routes
-   and asset paths against the intended hosting base path.
+3. Localize only permitted HTML/CSS `url()`, `srcset`, imports/fonts and navigation.
+   Preserve included static routes, same-host redirects and error routes. Do not
+   hotlink excluded resources or leave remote imports active to fill gaps. Keep
+   external/document links out of the crawl and clearly identify unavailable
+   preview actions. Check nested routes/assets on the intended hosting base path.
 4. Disconnect forms, checkout, trackers and mutating integrations in previews.
    Preserve UI/validation but show "Preview — not submitted," not fake success.
    Production reconnection requires §2 approval and authorized configuration.
-   List tracker/integration differences as fidelity exceptions, not speed wins.
+   List all blocked external-resource/tracker/integration differences as fidelity
+   exceptions, not optimization wins. Apply the same exclusions to both copies.
 5. Serve locally; after fonts/images settle, compare source versus replica at
    identical route/viewport/scroll/state. Save `screenshots/control/`, `diffs/`
    and `fidelity-checks.json`; fix material visual/interaction differences before
-   optimizing. Record dynamic/licensed/unavailable exceptions; no unsupported
+   optimizing. Record off-host/dynamic/licensed/unavailable exceptions; no unsupported
    "pixel-exact" claims.
 6. Save the site's `README.md` with install/build/serve commands, route/asset
    coverage, host assumptions and fidelity/backend exceptions.
@@ -757,7 +847,8 @@ immediately after `python3 -m pipeline`, **before** each subcommand.
 
 1. **Confirm the inputs.** Read the specified private manifest. Its explicit
    local `source_dir`/`source_paths` must contain the current accepted site, not
-   last month's unshipped proposal. Confirm copying/provider consent, the exact
+   last month's unshipped proposal. Reuse §2's copying authorization without
+   requesting written proof. Separately confirm provider consent, the exact
    small agreed fix, file allowlist, meaningful acceptance commands, CLI permissions,
    timeout and call/spend limits. Never change `owner_approved` to true yourself.
    If a new manifest or acceptance command is needed, draft it using
@@ -877,6 +968,7 @@ Recovery rules—never skip a failed prerequisite and claim success:
 
 | Condition | Action / saved checkpoint |
 | --- | --- |
+| Explicit local-copy/improvement request, but no written permission document | **CONTINUE** using the operator request as authorization; do not ask for proof or repeat confirmation |
 | Unsafe destination/path or restricted content | **STOP** that operation; record reason; no bypass |
 | Missing input, permission or exceeded budget | **ASK**; save queue/step/required decision in `run.json` |
 | Missing tooling | Use an available safe equivalent or **ASK** for necessary project-local installation; blocked if unavailable |
