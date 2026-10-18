@@ -1,6 +1,10 @@
 .env
 .env.local
 .env.*.local
+.frictionless-reports/
+_site/
+scripts/__pycache__/
+tests/__pycache__/
 pipeline/.state/
 pipeline/.customers/
 pipeline/.sources/

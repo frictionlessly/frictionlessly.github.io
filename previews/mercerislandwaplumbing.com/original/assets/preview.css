@@ -1,0 +1,117 @@
+.preview-notice,
+.preview-cookie-note {
+  box-sizing: border-box;
+  background: #f2eeec;
+  color: #143755;
+  padding: 10px max(18px, calc((100% - 1170px) / 2));
+  font: 13px/1.5 Arial, sans-serif;
+}
+
+.preview-notice p {
+  margin: 0;
+}
+
+.preview-notice a,
+.preview-cookie-note a {
+  color: #143755;
+  text-decoration: underline;
+}
+
+.preview-notice summary {
+  cursor: pointer;
+  width: fit-content;
+}
+
+.preview-notice nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  padding-top: 6px;
+}
+
+.preview-notice [aria-current="page"] {
+  font-weight: bold;
+}
+
+.preview-notice a:focus-visible,
+.preview-notice summary:focus-visible,
+.preview-cookie-note a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.preview-form-status,
+.preview-unavailable {
+  font: 13px/1.5 Arial, sans-serif;
+  margin: 0 0 18px;
+  padding: 10px;
+  background: #f2eeec;
+  color: #143755;
+}
+
+.preview-form-status:focus {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.preview-cookie-note {
+  border-top: 1px solid #d6d6d6;
+}
+
+.template .section__form {
+  font-size: 1px;
+}
+
+.template .section__shape .form__box {
+  padding: 0 22px;
+}
+
+.template .section__form .form__row {
+  margin-bottom: 24px;
+}
+
+.template .section__form .form__row._submit {
+  margin-bottom: 0;
+}
+
+.template .section__form .input,
+.template .section__form .textarea {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  padding: 10px 13px;
+  border: var(--input_borderWidth) solid var(--input_borderColor);
+  border-radius: var(--input_borderRadius);
+  background: var(--input_background);
+  color: var(--input_color);
+  font-family: var(--text_fontFamily);
+  font-size: var(--input_fontSize);
+  line-height: 1.2;
+}
+
+.template .section__form .textarea {
+  height: var(--input_textarea_height);
+  resize: vertical;
+}
+
+.template .section__form .btn_secondary {
+  padding: 6px 28px;
+  border: var(--btn_secondary_borderWidth) solid var(--btn_secondary_borderColor);
+  border-radius: var(--btn_secondary_borderRadius);
+  background: var(--btn_secondary_background);
+  color: var(--btn_secondary_color);
+  font-family: var(--btn_secondary_fontFamily);
+  font-weight: var(--btn_secondary_fontWeight);
+  cursor: pointer;
+}
+
+.template .section__form :is(input, textarea, button):focus-visible {
+  outline: 2px solid #286daa;
+  outline-offset: 3px;
+}
+
+@media (max-width: 767px) {
+  .template .section__form .btn_secondary {
+    width: 100%;
+  }
+}

@@ -23,8 +23,16 @@ Hosting setup and continuity remain the operator's responsibility on the existin
 approved hosting service. This pipeline does not provision hosting or monitor uptime.
 Supply real hosting/availability evidence when available; otherwise the report says
 it was not measured. Use the existing deployment process **only after manual review**.
-The current repository deploys only root `index.html`; keep it that way. Never deploy
-`pipeline/`, a manifest, a run directory, a baseline, prompts, logs, or reports.
+The Pages build (`python3 scripts/build_site.py`) publishes root `index.html` and
+the curated static files in `previews/`, not `.frictionless-reports/`. Never deploy
+`pipeline/`, a private manifest/run directory/baseline, prompts, logs, or reports.
+An approved public preview must contain only reviewed site files, with its routes
+and assets working under `/previews/<domain>/original/` or `/optimized/`, no active
+production integrations, and clear preview/noindex treatment. Copy only that
+curated output into `previews/`; merely placing files in a report run does not
+publish them. Public deep links are on `https://frictionlessly.github.io/`.
+The build requires a new or empty `_site/`; use `--output PATH` for another empty
+destination. Publisher checks: `python3 -m unittest discover -s tests -v`.
 
 ## Quickstart: safe preparation, then explicit execution
 
